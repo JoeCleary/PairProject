@@ -1,5 +1,9 @@
 import java.awt.image.*;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
+
+import javax.imageio.*;
 
 public class Entity {
 	private int x, y, z;
@@ -11,6 +15,8 @@ public class Entity {
 		x = nX;
 		y = nY;
 		z = nZ;
+		
+		allEntities.add(this);
 	}
 	
 	public static void updateAll(){
@@ -24,7 +30,13 @@ public class Entity {
 		z = z + zV;
 	}
 	
-	public VolatileImage getSprite(){
+	public BufferedImage getSprite(){
+		BufferedImage img = null;
 		
+		try {
+			img = ImageIO.read(new File("PictureProject/res/img.png"));
+		}catch (IOException e) {}
+		
+		return img;
 	}
 }
