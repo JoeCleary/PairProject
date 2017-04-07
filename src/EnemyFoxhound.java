@@ -9,7 +9,7 @@ public class EnemyFoxhound extends EnemyPlane{
 		super(nX, nY, nZ);
 		x = nX;
 		y = nX;
-		// z = nearest camera
+		// z = nearest to camera
 		
 	}
 	
