@@ -28,7 +28,7 @@ public class Main {
 		
 		frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
 		
-		
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		panel = new JPanel(){
 			public void paintComponent(Graphics g){
@@ -47,7 +47,7 @@ public class Main {
 					
 				}
 				
-				g.drawImage(img, 0, 0, w, w, null);
+				g.drawImage(img, 500 - (w/2), 500 - (w/2), w, w, null);
 			}
 		};
 
