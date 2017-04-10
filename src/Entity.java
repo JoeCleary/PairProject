@@ -6,12 +6,12 @@ import java.util.ArrayList;
 import javax.imageio.*;
 
 public class Entity {
-	private int x, y, z;
-	private int xV, yV, zV;
+	protected float x, y, z;
+	protected float xV, yV, zV;
 	
-	public static ArrayList<Entity> allEntities = new ArrayList<Entity>();
+	private static ArrayList<Entity> allEntities = new ArrayList<Entity>();
 	
-	public Entity(int nX, int nY, int nZ){
+	public Entity(float nX, float nY, float nZ){
 		x = nX;
 		y = nY;
 		z = nZ;
