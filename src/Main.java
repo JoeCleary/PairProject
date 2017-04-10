@@ -11,11 +11,13 @@ public class Main {
 	JFrame frame;
 	JPanel panel;
 	
-	boolean up = false, down = false;
+	boolean up = false, down = false, left = false, right = false;
+	
+	boolean gameOn = true;
 	
 	int w = 300;
 	
-	
+	int p = 0;
 	
 	
 	
@@ -40,14 +42,19 @@ public class Main {
 					img = ImageIO.read(new File("res/img.png"));
 				}catch (IOException e) {}
 				
-				if(up){
+				if(down){
 					w++;
-				}else if(down){
+				}else if(up && w >= 0){
 					w--;
-					
 				}
 				
-				g.drawImage(img, 500 - (w/2), 500 - (w/2), w, w, null);
+				if(right){
+					p++;
+				}else if(left){
+					p--;
+				}
+				
+				g.drawImage(img, p - (w/2), 540 - (w/2), w, w, null);
 			}
 		};
 
@@ -60,7 +67,11 @@ public class Main {
 				if(ke.getKeyCode() == KeyEvent.VK_DOWN)
 					down = true;
 				
-				panel.repaint();
+				if(ke.getKeyCode() == KeyEvent.VK_LEFT)
+					left = true;
+				
+				if(ke.getKeyCode() == KeyEvent.VK_RIGHT)
+					right = true;
 			}
 
 			
@@ -71,7 +82,11 @@ public class Main {
 				if(ke.getKeyCode() == KeyEvent.VK_DOWN)
 					down = false;
 				
-				panel.repaint();
+				if(ke.getKeyCode() == KeyEvent.VK_LEFT)
+					left = false;
+				
+				if(ke.getKeyCode() == KeyEvent.VK_RIGHT)
+					right = false;
 			}
 
 			
@@ -84,6 +99,10 @@ public class Main {
 		frame.setContentPane(panel);
 		
 		frame.setVisible(true);
+		
+		while(gameOn){
+			panel.repaint();
+		}
 	}
 	
 	
