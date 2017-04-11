@@ -15,16 +15,13 @@ public class Main {
 	
 	boolean gameOn = true;
 	
-	int w = 300;
-	
-	int p = 0;
-	
-	
 	
 	public static void main(String args[]){
 		new Main().startGame();
 	}
 	
+	
+	@SuppressWarnings("serial")
 	public void startGame(){
 		frame = new JFrame();
 		
@@ -32,16 +29,24 @@ public class Main {
 		
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
+		frame.setCursor(new Cursor(Cursor.CROSSHAIR_CURSOR));
+		
+		
+		/* Toolkit.createCustom 
+		 * public Cursor createCustomCursor(Image cursor,
+                        Point hotSpot,
+                        String name)
+                          throws IndexOutOfBoundsException,
+                                 HeadlessException
+		 */
+		
+		
 		panel = new JPanel(){
 			public void paintComponent(Graphics g){
 				super.paintComponent(g);
 				
 				BufferedImage img = new BufferedImage(100, 100, BufferedImage.SCALE_FAST);
-				
-				try {
-					img = ImageIO.read(new File("res/img.png"));
-				}catch (IOException e) {}
-				
+				/*
 				if(down){
 					w++;
 				}else if(up && w >= 0){
@@ -53,8 +58,8 @@ public class Main {
 				}else if(left){
 					p--;
 				}
+				*/
 				
-				g.drawImage(img, p - (w/2), 540 - (w/2), w, w, null);
 			}
 		};
 
@@ -104,9 +109,6 @@ public class Main {
 			panel.repaint();
 		}
 	}
-	
-	
-	
 }
 
 
