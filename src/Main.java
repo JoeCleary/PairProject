@@ -11,6 +11,8 @@ public class Main {
 	JFrame frame;
 	JPanel panel;
 	
+	Entity test;
+	
 	boolean up = false, down = false, left = false, right = false;
 	
 	boolean gameOn = true;
@@ -29,6 +31,8 @@ public class Main {
 		
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
+		frame.setResizable(false);
+		
 		frame.setCursor(new Cursor(Cursor.CROSSHAIR_CURSOR));
 		
 		
@@ -45,20 +49,22 @@ public class Main {
 			public void paintComponent(Graphics g){
 				super.paintComponent(g);
 				
-				BufferedImage img = new BufferedImage(100, 100, BufferedImage.SCALE_FAST);
-				/*
+				//BufferedImage img = new BufferedImage(100, 100, BufferedImage.SCALE_FAST);
+				test = new Entity(0,0,0);
+				
 				if(down){
-					w++;
-				}else if(up && w >= 0){
-					w--;
+				
+				}else if(up){
+					
 				}
 				
 				if(right){
-					p++;
+					
 				}else if(left){
-					p--;
+					
 				}
-				*/
+				
+				Entity.updateAll(g);
 				
 			}
 		};

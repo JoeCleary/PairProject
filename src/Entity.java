@@ -8,7 +8,7 @@ import java.util.Comparator;
 import javax.imageio.*;
 
 public class Entity {
-	protected float x, y, z;
+	protected float x, y, z;// make these vectors
 	protected float xV, yV, zV;
 	protected BufferedImage sprite;
 	
@@ -36,7 +36,7 @@ public class Entity {
 		}
 	}
 	
-	private void update(){
+	private void update(float xV, float yV, float zV){
 		x = x + xV;
 		y = y + yV;
 		z = z + zV;
