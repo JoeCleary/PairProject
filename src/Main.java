@@ -13,7 +13,10 @@ public class Main {
 	
 	Entity test;
 	
-	boolean up = false, down = false, left = false, right = false;
+	static boolean up = false;
+	static boolean down = false;
+	static boolean left = false;
+	static boolean right = false;
 	
 	boolean gameOn = true;
 	
@@ -27,11 +30,16 @@ public class Main {
 	public void startGame(){
 		frame = new JFrame();
 		
-		frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
-		
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
+		frame.setSize(1600, 800);
+		
+		frame.setVisible(true);
+		
 		frame.setResizable(false);
+		
+		frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
+
 		
 		frame.setCursor(new Cursor(Cursor.CROSSHAIR_CURSOR));
 		
@@ -50,22 +58,10 @@ public class Main {
 				super.paintComponent(g);
 				
 				//BufferedImage img = new BufferedImage(100, 100, BufferedImage.SCALE_FAST);
-				test = new Entity(0,0,0);
 				
-				if(down){
 				
-				}else if(up){
-					
-				}
-				
-				if(right){
-					
-				}else if(left){
-					
-				}
 				
 				Entity.updateAll(g);
-				
 			}
 		};
 
@@ -84,7 +80,6 @@ public class Main {
 				if(ke.getKeyCode() == KeyEvent.VK_RIGHT)
 					right = true;
 			}
-
 			
 			public void keyReleased(KeyEvent ke) {
 				if(ke.getKeyCode() == KeyEvent.VK_UP)
@@ -99,21 +94,34 @@ public class Main {
 				if(ke.getKeyCode() == KeyEvent.VK_RIGHT)
 					right = false;
 			}
-
-			
 			public void keyTyped(KeyEvent ke) {}
 		});
 		
-		
-		panel.repaint();
-		
 		frame.setContentPane(panel);
 		
-		frame.setVisible(true);
+		frame.revalidate();
+		
+		test = new Entity(0,0,0);
 		
 		while(gameOn){
 			panel.repaint();
 		}
+	}
+	
+	public static boolean getUp(){
+		return up;
+	}
+	
+	public static boolean getDown(){
+		return down;
+	}
+	
+	public static boolean getLeft(){
+		return left;
+	}
+	
+	public static boolean getRight(){
+		return right;
 	}
 }
 

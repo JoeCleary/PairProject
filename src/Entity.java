@@ -11,6 +11,7 @@ public class Entity {
 	protected float x, y, z;// make these vectors
 	protected float xV, yV, zV;
 	protected BufferedImage sprite;
+	protected long timeCreated;
 	
 	private static ArrayList<Entity> allEntities = new ArrayList<Entity>();
 	
@@ -19,27 +20,32 @@ public class Entity {
 		y = nY;
 		z = nZ;
 		
-		try {
-			sprite = ImageIO.read(new File("PictureProject/res/img.png"));
-		}catch (IOException e) {}
+		timeCreated = System.nanoTime();
 		
 		allEntities.add(this);
 	}
 	
 	public static void updateAll(Graphics g){
 		for(Entity e : allEntities){
-			e.update();
+			//e.update();
 			
-			sortEntities();
+			e.changeState();
+		}
+		
+		sortEntities();
+		
+		for(Entity e : allEntities){
+			System.out.println("me draw?");
 			
-			g.drawImage(e.sprite, (int)e.x - ((int)e.z/2), (int)e.y - ((int)e.z/2), (int)e.z, (int)e.z, null);
+			//g.drawImage(e.sprite, (int)e.x - ((int)e.z/2), (int)e.y - ((int)e.z/2), (int)e.z, (int)e.z, null);
+			g.drawImage(e.sprite, 10, 10, 10, 10, null);
 		}
 	}
 	
-	private void update(float xV, float yV, float zV){
-		x = x + xV;
-		y = y + yV;
-		z = z + zV;
+	private void update(){
+		x = x + (xV / (System.nanoTime() - timeCreated));
+		y = y + (yV / (System.nanoTime() - timeCreated));
+		z = z + (zV / (System.nanoTime() - timeCreated));
 	}
 	
 	public BufferedImage getSprite(){
@@ -53,4 +59,6 @@ public class Entity {
 			}
 		});
 	}
+	
+	public void changeState(){}
 }
