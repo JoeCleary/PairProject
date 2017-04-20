@@ -23,9 +23,31 @@ public class Entity {
 		timeCreated = System.nanoTime();
 		
 		allEntities.add(this);
+		
+		try {
+			sprite = ImageIO.read(new File("res/img.png"));
+		} catch (IOException e) {}
 	}
 	
-	void update(){
+	public static void updateAll(Graphics g){
+		for(Entity e : Entity.getEntities()){
+			e.update();
+			
+			e.changeState();
+		}
+		
+		sortEntities();
+		
+		for(Entity e : Entity.getEntities()){
+			//System.out.println("(" + e.x + "," + e.y + "," + e.z + ")");
+			
+			g.drawImage(e.sprite, (int)e.x - ((int)e.z/2), (int)e.y - ((int)e.z/2), (int)e.z, (int)e.z, null);
+			
+			//g.drawImage(e.sprite, (int)e.x - ((int)e.z/2), (int)e.y - ((int)e.z/2), null);
+		}
+	}
+	
+	private void update(){
 		x = x + (xV / (System.nanoTime() - timeCreated));
 		y = y + (yV / (System.nanoTime() - timeCreated));
 		z = z + (zV / (System.nanoTime() - timeCreated));
@@ -35,7 +57,7 @@ public class Entity {
 		return sprite;
 	}
 	
-	public static void sortEntities(){
+	private static void sortEntities(){
 		allEntities.sort(new Comparator<Entity>(){
 			public int compare(Entity one, Entity two) {
 				return ((int) one.z - (int) two.z);

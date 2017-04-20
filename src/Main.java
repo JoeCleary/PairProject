@@ -32,16 +32,19 @@ public class Main {
 		
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
-		frame.setSize(1600, 800);
+		frame.setSize(1600, 900);
 		
 		frame.setVisible(true);
 		
 		frame.setResizable(false);
 		
 		frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
-
 		
-		frame.setCursor(new Cursor(Cursor.CROSSHAIR_CURSOR));
+		BufferedImage cursorImg = new BufferedImage(1, 1, BufferedImage.TRANSLUCENT);
+
+		Cursor blankCursor = Toolkit.getDefaultToolkit().createCustomCursor(cursorImg, new Point(0, 0), "blank cursor");
+		
+		frame.setCursor(blankCursor);
 		
 		
 		/* Toolkit.createCustom 
@@ -57,26 +60,19 @@ public class Main {
 			public void paintComponent(Graphics g){
 				super.paintComponent(g);
 				
+				//get color
+				g.setColor(Color.BLACK);
+				g.fillRect(0, 0, 1600, 900);
+				
 				//BufferedImage img = new BufferedImage(100, 100, BufferedImage.SCALE_FAST);
 				
-				for(Entity e : Entity.getEntities()){
-					e.update();
-					
-					e.changeState();
-				}
+				Entity.updateAll(g);
 				
-				Entity.sortEntities();
 				
-				for(Entity e : Entity.getEntities()){
-					System.out.println("me draw?");
-					
-					//g.drawImage(e.sprite, (int)e.x - ((int)e.z/2), (int)e.y - ((int)e.z/2), (int)e.z, (int)e.z, null);
-				}
 			}
 		};
 
 		frame.addKeyListener(new KeyListener(){
-
 			public void keyPressed(KeyEvent ke) {
 				if(ke.getKeyCode() == KeyEvent.VK_UP)
 					up = true;
@@ -104,6 +100,7 @@ public class Main {
 				if(ke.getKeyCode() == KeyEvent.VK_RIGHT)
 					right = false;
 			}
+			
 			public void keyTyped(KeyEvent ke) {}
 		});	
 		
@@ -111,7 +108,13 @@ public class Main {
 		
 		frame.revalidate();
 		
-		test = new PlayerTomcat(0,0,100);
+		test = new PlayerTomcat(800,450,100);
+		
+		new dont(100,100,50);
+		
+		new dont(500, 100, 150);
+		
+		
 		
 		while(gameOn){
 			panel.repaint();

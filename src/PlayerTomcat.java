@@ -14,7 +14,7 @@ public class PlayerTomcat extends Entity{
 		zV = 0;
 		
 		try {
-			sprite = ImageIO.read(new File("PictureProject/res/asscered.png"));
+			sprite = ImageIO.read(new File("res/plane.png"));
 		} catch (IOException e) {}
 	}
 	
@@ -24,10 +24,9 @@ public class PlayerTomcat extends Entity{
 		else if(Main.getDown())
 			y++;
 		
-		
 		if(Main.getRight())
 			x++;
 		else if(Main.getLeft())
-			y++;
+			x--;
 	}
 }
