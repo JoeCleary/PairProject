@@ -25,24 +25,7 @@ public class Entity {
 		allEntities.add(this);
 	}
 	
-	public static void updateAll(Graphics g){
-		for(Entity e : allEntities){
-			//e.update();
-			
-			e.changeState();
-		}
-		
-		sortEntities();
-		
-		for(Entity e : allEntities){
-			System.out.println("me draw?");
-			
-			//g.drawImage(e.sprite, (int)e.x - ((int)e.z/2), (int)e.y - ((int)e.z/2), (int)e.z, (int)e.z, null);
-			g.drawImage(e.sprite, 10, 10, 10, 10, null);
-		}
-	}
-	
-	private void update(){
+	void update(){
 		x = x + (xV / (System.nanoTime() - timeCreated));
 		y = y + (yV / (System.nanoTime() - timeCreated));
 		z = z + (zV / (System.nanoTime() - timeCreated));
@@ -58,6 +41,10 @@ public class Entity {
 				return ((int) one.z - (int) two.z);
 			}
 		});
+	}
+	
+	public static ArrayList<Entity> getEntities(){
+		return allEntities;
 	}
 	
 	public void changeState(){}

@@ -6,7 +6,7 @@ import javax.imageio.ImageIO;
 public class PlayerTomcat extends Entity{
 	//z should always be 0 for the player
 	
-	public PlayerTomcat(float nX, float nY, float nZ, float nxV, float nyV, float nzV) {
+	public PlayerTomcat(float nX, float nY, float nZ) {
 		super(nX, nY, nZ);
 		
 		xV = 0;

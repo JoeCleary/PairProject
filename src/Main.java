@@ -59,9 +59,19 @@ public class Main {
 				
 				//BufferedImage img = new BufferedImage(100, 100, BufferedImage.SCALE_FAST);
 				
+				for(Entity e : Entity.getEntities()){
+					e.update();
+					
+					e.changeState();
+				}
 				
+				Entity.sortEntities();
 				
-				Entity.updateAll(g);
+				for(Entity e : Entity.getEntities()){
+					System.out.println("me draw?");
+					
+					//g.drawImage(e.sprite, (int)e.x - ((int)e.z/2), (int)e.y - ((int)e.z/2), (int)e.z, (int)e.z, null);
+				}
 			}
 		};
 
@@ -95,17 +105,21 @@ public class Main {
 					right = false;
 			}
 			public void keyTyped(KeyEvent ke) {}
-		});
+		});	
 		
 		frame.setContentPane(panel);
 		
 		frame.revalidate();
 		
-		test = new Entity(0,0,0);
+		test = new PlayerTomcat(0,0,100);
 		
 		while(gameOn){
 			panel.repaint();
 		}
+	}
+	
+	public void updateAll(){
+		
 	}
 	
 	public static boolean getUp(){
