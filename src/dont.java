@@ -8,7 +8,7 @@ public class dont extends Entity{
 		super(nX, nY, nZ);
 		
 		try {
-			sprite = ImageIO.read(new File("res/img.png"));
+			sprite = ImageIO.read(new File("res/kloud.png"));
 		} catch (IOException e) {}
 	}
 }

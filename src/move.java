@@ -12,7 +12,7 @@ public class move extends Entity{
 		zV = .1f;
 		
 		try {
-			sprite = ImageIO.read(new File("res/img.png"));
+			sprite = ImageIO.read(new File("res/kloud.png"));
 		} catch (IOException e) {}
 	}
 	

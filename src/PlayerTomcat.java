@@ -22,13 +22,13 @@ public class PlayerTomcat extends Entity{
 		super.update();
 		
 		if(Main.getUp()) 
-			y--;
+			y -= 0.25f;
 		else if(Main.getDown())
-			y++;
+			y += 0.25f;
 		
 		if(Main.getRight())
-			x++;
+			x += 0.25f;
 		else if(Main.getLeft())
-			x--;
+			x -= 0.25f;
 	}
 }

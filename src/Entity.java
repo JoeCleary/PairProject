@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.ConcurrentModificationException;
 
 import javax.imageio.*;
 
@@ -30,21 +31,23 @@ public class Entity {
 	}
 	
 	public static void updateAll(Graphics g){
-		for(Entity e : Entity.getEntities()){
-			e.update();
+		try{
+			for(Entity e : Entity.getEntities()){
+				e.update();
+				
+				//e.changeState();
+			}
 			
-			//e.changeState();
-		}
-		
-		sortEntities();
-		
-		for(Entity e : Entity.getEntities()){
-			//System.out.println("(" + e.x + "," + e.y + "," + e.z + ")");
+			sortEntities();
 			
-			g.drawImage(e.sprite, (int)e.x - ((int)e.z/2), (int)e.y - ((int)e.z/2), (int)e.z, (int)e.z, null);
-			
-			//g.drawImage(e.sprite, (int)e.x - ((int)e.z/2), (int)e.y - ((int)e.z/2), null);
-		}
+			for(Entity e : Entity.getEntities()){
+				//System.out.println("(" + e.x + "," + e.y + "," + e.z + ")");
+				
+				g.drawImage(e.sprite, (int)e.x - ((int)e.z/2), (int)e.y - ((int)e.z/2), (int)e.z, (int)e.z, null);
+				
+				//g.drawImage(e.sprite, (int)e.x - ((int)e.z/2), (int)e.y - ((int)e.z/2), null);
+			}
+		}catch(ConcurrentModificationException cme){}
 	}
 	
 	protected void update(){
@@ -55,10 +58,10 @@ public class Entity {
 		z = z + (zV / (System.nanoTime() - timeCreated));
 		*/
 		
-		
 		x = x + xV;
 		y = y + yV;
 		z = z + zV;
+		
 	}
 	
 	public BufferedImage getSprite(){
