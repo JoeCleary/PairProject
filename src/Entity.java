@@ -33,7 +33,7 @@ public class Entity {
 		for(Entity e : Entity.getEntities()){
 			e.update();
 			
-			e.changeState();
+			//e.changeState();
 		}
 		
 		sortEntities();
@@ -47,10 +47,18 @@ public class Entity {
 		}
 	}
 	
-	private void update(){
+	protected void update(){
+		
+		/*
 		x = x + (xV / (System.nanoTime() - timeCreated));
 		y = y + (yV / (System.nanoTime() - timeCreated));
 		z = z + (zV / (System.nanoTime() - timeCreated));
+		*/
+		
+		
+		x = x + xV;
+		y = y + yV;
+		z = z + zV;
 	}
 	
 	public BufferedImage getSprite(){

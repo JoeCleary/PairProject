@@ -38,21 +38,14 @@ public class Main {
 		
 		frame.setResizable(false);
 		
-		frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
+		//frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
 		
+		/*
 		BufferedImage cursorImg = new BufferedImage(1, 1, BufferedImage.TRANSLUCENT);
 
 		Cursor blankCursor = Toolkit.getDefaultToolkit().createCustomCursor(cursorImg, new Point(0, 0), "blank cursor");
 		
 		frame.setCursor(blankCursor);
-		
-		
-		/* Toolkit.createCustom 
-		 * public Cursor createCustomCursor(Image cursor,
-                        Point hotSpot,
-                        String name)
-                          throws IndexOutOfBoundsException,
-                                 HeadlessException
 		 */
 		
 		
@@ -61,14 +54,14 @@ public class Main {
 				super.paintComponent(g);
 				
 				//get color
-				g.setColor(Color.BLACK);
+				g.setColor(new Color(153,204,255));
 				g.fillRect(0, 0, 1600, 900);
 				
-				//BufferedImage img = new BufferedImage(100, 100, BufferedImage.SCALE_FAST);
+				
 				
 				Entity.updateAll(g);
 				
-				
+				//draw hud now? or maybe they should be entities but we will need to put in a special draw case for them
 			}
 		};
 
@@ -76,7 +69,7 @@ public class Main {
 			public void keyPressed(KeyEvent ke) {
 				if(ke.getKeyCode() == KeyEvent.VK_UP)
 					up = true;
-				
+					
 				if(ke.getKeyCode() == KeyEvent.VK_DOWN)
 					down = true;
 				
@@ -90,7 +83,7 @@ public class Main {
 			public void keyReleased(KeyEvent ke) {
 				if(ke.getKeyCode() == KeyEvent.VK_UP)
 					up = false;
-				
+					
 				if(ke.getKeyCode() == KeyEvent.VK_DOWN)
 					down = false;
 				
@@ -110,11 +103,14 @@ public class Main {
 		
 		test = new PlayerTomcat(800,450,100);
 		
-		new dont(100,100,50);
+		new move(100,100,50);
 		
-		new dont(500, 100, 150);
+		new dont(300, 100, 150);
 		
+		new dont(500, 100, 50);
+		//new Entity(100,100,50);
 		
+		//new Entity(500, 100, 150);
 		
 		while(gameOn){
 			panel.repaint();

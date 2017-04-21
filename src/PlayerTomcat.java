@@ -19,7 +19,9 @@ public class PlayerTomcat extends Entity{
 	}
 	
 	public void update(){
-		if(Main.getUp())
+		super.update();
+		
+		if(Main.getUp()) 
 			y--;
 		else if(Main.getDown())
 			y++;
