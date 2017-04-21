@@ -51,17 +51,9 @@ public class Entity {
 	}
 	
 	protected void update(){
-		
-		/*
-		x = x + (xV / (System.nanoTime() - timeCreated));
-		y = y + (yV / (System.nanoTime() - timeCreated));
-		z = z + (zV / (System.nanoTime() - timeCreated));
-		*/
-		
-		x = x + xV;
-		y = y + yV;
-		z = z + zV;
-		
+		x = (float) (x + (xV / Main.game.getTime()));
+		y = (float) (y + (yV / Main.game.getTime()));
+		z = (float) (z + (zV / Main.game.getTime()));
 	}
 	
 	public BufferedImage getSprite(){

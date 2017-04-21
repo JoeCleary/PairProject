@@ -8,23 +8,27 @@ import javax.imageio.ImageIO;
 import javax.swing.*;
 
 public class Main {
+	public static Main game;
 	JFrame frame;
 	JPanel panel;
 	
 	Entity test;
 	
-	static boolean up = false;
-	static boolean down = false;
-	static boolean left = false;
-	static boolean right = false;
+	boolean up = false;
+	boolean down = false;
+	boolean left = false;
+	boolean right = false;
 	
 	boolean gameOn = true;
 	
+	long lastTime;
+	
 	
 	public static void main(String args[]){
-		new Main().startGame();
+		game = new Main();
+		
+		game.startGame();
 	}
-	
 	
 	@SuppressWarnings("serial")
 	public void startGame(){
@@ -38,7 +42,7 @@ public class Main {
 		
 		frame.setResizable(false);
 		
-		//frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
+		frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
 		
 		/*
 		BufferedImage cursorImg = new BufferedImage(1, 1, BufferedImage.TRANSLUCENT);
@@ -56,8 +60,6 @@ public class Main {
 				//get color
 				g.setColor(new Color(153,204,255));
 				g.fillRect(0, 0, 1600, 900);
-				
-				
 				
 				Entity.updateAll(g);
 				
@@ -103,7 +105,9 @@ public class Main {
 		
 		test = new PlayerTomcat(800,450,100);
 		
-		new move(100,100,50);
+		new move(1000,600,50);
+		
+		new move(500,300,100);
 		
 		new dont(300, 100, 150);
 		
@@ -113,27 +117,32 @@ public class Main {
 		//new Entity(500, 100, 150);
 		
 		while(gameOn){
+			lastTime = System.nanoTime();
+			
 			panel.repaint();
 		}
 	}
 	
-	public void updateAll(){
-		
+	public float getTime(){
+		//
+		return (float) ((System.nanoTime() - lastTime));
 	}
 	
-	public static boolean getUp(){
+	
+	
+	public boolean getUp(){
 		return up;
 	}
 	
-	public static boolean getDown(){
+	public boolean getDown(){
 		return down;
 	}
 	
-	public static boolean getLeft(){
+	public boolean getLeft(){
 		return left;
 	}
 	
-	public static boolean getRight(){
+	public boolean getRight(){
 		return right;
 	}
 }
