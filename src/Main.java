@@ -101,8 +101,6 @@ public class Main {
 		
 		frame.setContentPane(panel);
 		
-		frame.revalidate();
-		
 		test = new PlayerTomcat(800,450,100);
 		
 		new move(1000,600,50);
