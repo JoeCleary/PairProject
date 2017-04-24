@@ -34,4 +34,11 @@ public class PlayerTomcat extends Entity{
 	}
 	
 	//add to score
+	public void addToScore(int add){
+		score += add;
+	}
+	
+	public int getScore(){
+		return score;
+	}
 }

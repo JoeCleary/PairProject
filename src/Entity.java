@@ -11,6 +11,7 @@ import javax.imageio.*;
 public class Entity {
 	protected float x, y, z;// make these vectors
 	protected float xV, yV, zV;
+	protected float w, h, d = 10f;
 	protected BufferedImage sprite;
 	protected long timeCreated;
 	
@@ -39,6 +40,8 @@ public class Entity {
 			}
 			
 			sortEntities();
+			
+			//check for collision here?
 			
 			for(Entity e : Entity.getEntities()){
 				//System.out.println("(" + e.x + "," + e.y + "," + e.z + ")");

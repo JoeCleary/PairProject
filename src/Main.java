@@ -61,6 +61,10 @@ public class Main {
 				g.setColor(new Color(153,204,255));
 				g.fillRect(0, 0, 1600, 900);
 				
+				//make ground
+				
+				//ground things
+				
 				Entity.updateAll(g);
 				
 				//draw hud now? or maybe they should be entities but we will need to put in a special draw case for them
