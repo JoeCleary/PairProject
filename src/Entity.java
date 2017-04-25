@@ -54,9 +54,16 @@ public class Entity {
 	}
 	
 	protected void update(){
-		x = (float) (x + (xV / Main.game.getTime()));
-		y = (float) (y + (yV / Main.game.getTime()));
-		z = (float) (z + (zV / Main.game.getTime()));
+		System.out.println(Main.game.getTime());
+		
+		x += (xV / Main.game.getTime());
+		y += (yV / Main.game.getTime());
+		z += (zV / Main.game.getTime());
+		
+		
+		//x = x + xV;
+		//y = y + yV;
+		//z = z + zV;
 	}
 	
 	public BufferedImage getSprite(){

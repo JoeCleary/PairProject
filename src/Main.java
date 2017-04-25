@@ -107,18 +107,18 @@ public class Main {
 		
 		test = new PlayerTomcat(800,450,100);
 		
-		new move(1000,600,50);
 		
-		new move(500,300,100);
+		new move((float) (Math.random() * 1600),(float) (Math.random() * 900),0);
+		//new dont(300, 100, 150);
 		
-		new dont(300, 100, 150);
-		
-		new dont(500, 100, 50);
+		//new dont(500, 100, 50);
 		//new Entity(100,100,50);
 		
 		//new Entity(500, 100, 150);
 		
 		while(gameOn){
+			
+			
 			lastTime = System.nanoTime();
 			
 			panel.repaint();
@@ -126,8 +126,12 @@ public class Main {
 	}
 	
 	public float getTime(){
-		//
-		return (float) ((System.nanoTime() - lastTime));
+		//float no = System.nanoTime() - lastTime;
+		
+		//if(no == 0)
+			//no = 1;
+		
+		return 100f;
 	}
 	
 	
