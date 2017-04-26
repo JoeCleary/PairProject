@@ -109,6 +109,11 @@ public class Main {
 		
 		
 		new move((float) (Math.random() * 1600),(float) (Math.random() * 900),0);
+		new move((float) (Math.random() * 1600),(float) (Math.random() * 900),0);
+		new move((float) (Math.random() * 1600),(float) (Math.random() * 900),0);
+		new move((float) (Math.random() * 1600),(float) (Math.random() * 900),0);
+		new move((float) (Math.random() * 1600),(float) (Math.random() * 900),0);
+		new move((float) (Math.random() * 1600),(float) (Math.random() * 900),0);
 		//new dont(300, 100, 150);
 		
 		//new dont(500, 100, 50);
@@ -125,13 +130,13 @@ public class Main {
 		}
 	}
 	
-	public float getTime(){
-		//float no = System.nanoTime() - lastTime;
+	public long getTime(){
+		long no = System.nanoTime() - lastTime;
 		
-		//if(no == 0)
-			//no = 1;
+		if(no == 0)
+			no = 1000;
 		
-		return 100f;
+		return no;
 	}
 	
 	

@@ -4,7 +4,7 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 
 public class PlayerTomcat extends Entity{
-	//z should always be 0 for the player
+	//z should almost always be 0 for the player
 	int score;
 	
 	public PlayerTomcat(float nX, float nY, float nZ) {
@@ -22,15 +22,19 @@ public class PlayerTomcat extends Entity{
 	public void update(){
 		super.update();
 		
+		yV = 0;
+		
+		xV = 0;
+		
 		if(Main.game.getUp()) 
-			y -= 2f;
+			yV = -200;
 		else if(Main.game.getDown())
-			y += 2f;
+			yV = 200;
 		
 		if(Main.game.getRight())
-			x += 2f;
+			xV = 200;
 		else if(Main.game.getLeft())
-			x -= 2f;
+			xV = -200;
 	}
 	
 	//add to score
