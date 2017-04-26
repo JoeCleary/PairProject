@@ -26,15 +26,18 @@ public class PlayerTomcat extends Entity{
 		
 		xV = 0;
 		
-		if(Main.game.getUp()) 
-			yV = -200;
-		else if(Main.game.getDown())
-			yV = 200;
+		if(Main.getGame().getUp()) 
+			yV = -10;
+		else if(Main.getGame().getDown())
+			yV = 10;
 		
-		if(Main.game.getRight())
-			xV = 200;
-		else if(Main.game.getLeft())
-			xV = -200;
+		if(Main.getGame().getRight())
+			xV = 10;
+		else if(Main.getGame().getLeft())
+			xV = -00;
+		
+		if(Main.getGame().getShoot())
+			new Tracer(x, y, 99);
 	}
 	
 	//add to score

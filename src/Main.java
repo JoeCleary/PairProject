@@ -8,20 +8,19 @@ import javax.imageio.ImageIO;
 import javax.swing.*;
 
 public class Main {
-	public static Main game;
-	JFrame frame;
-	JPanel panel;
+	private static Main game;
+	private JFrame frame;
+	private JPanel panel;
 	
-	Entity test;
+	private boolean up = false;
+	private boolean down = false;
+	private boolean left = false;
+	private boolean right = false;
+	private boolean shoot = false;
 	
-	boolean up = false;
-	boolean down = false;
-	boolean left = false;
-	boolean right = false;
+	private boolean gameOn = true;
 	
-	boolean gameOn = true;
-	
-	long lastTime;
+	private long lastTime;
 	
 	
 	public static void main(String args[]){
@@ -62,6 +61,8 @@ public class Main {
 				g.fillRect(0, 0, 1600, 900);
 				
 				//make ground
+				g.setColor(Color.GREEN);
+				g.fillRect(0, 600, 1600, 900);
 				
 				//ground things
 				
@@ -84,6 +85,9 @@ public class Main {
 				
 				if(ke.getKeyCode() == KeyEvent.VK_RIGHT)
 					right = true;
+				
+				if(ke.getKeyCode() == KeyEvent.VK_Z)
+					shoot = true;
 			}
 			
 			public void keyReleased(KeyEvent ke) {
@@ -98,6 +102,9 @@ public class Main {
 				
 				if(ke.getKeyCode() == KeyEvent.VK_RIGHT)
 					right = false;
+				
+				if(ke.getKeyCode() == KeyEvent.VK_Z)
+					shoot = false;
 			}
 			
 			public void keyTyped(KeyEvent ke) {}
@@ -105,15 +112,11 @@ public class Main {
 		
 		frame.setContentPane(panel);
 		
-		test = new PlayerTomcat(800,450,100);
+		new PlayerTomcat(800,450,100);
 		
 		
-		new move((float) (Math.random() * 1600),(float) (Math.random() * 900),0);
-		new move((float) (Math.random() * 1600),(float) (Math.random() * 900),0);
-		new move((float) (Math.random() * 1600),(float) (Math.random() * 900),0);
-		new move((float) (Math.random() * 1600),(float) (Math.random() * 900),0);
-		new move((float) (Math.random() * 1600),(float) (Math.random() * 900),0);
-		new move((float) (Math.random() * 1600),(float) (Math.random() * 900),0);
+		//new move((float) (Math.random() * 1600),(float) (Math.random() * 600),0);
+		//new move((float) (Math.random() * 1600),(float) (Math.random() * 600),0);
 		//new dont(300, 100, 150);
 		
 		//new dont(500, 100, 50);
@@ -133,12 +136,15 @@ public class Main {
 	public long getTime(){
 		long no = System.nanoTime() - lastTime;
 		
-		if(no == 0)
-			no = 1000;
+		if(no == 0L)
+			no = 1000000000L;
 		
 		return no;
 	}
 	
+	public static Main getGame(){
+		return game;
+	}
 	
 	
 	public boolean getUp(){
@@ -155,6 +161,10 @@ public class Main {
 	
 	public boolean getRight(){
 		return right;
+	}
+	
+	public boolean getShoot(){
+		return shoot;
 	}
 }
 

@@ -54,11 +54,9 @@ public class Entity {
 	}
 	
 	protected void update(){
-		System.out.println(Main.game.getTime());
-		
-		x += (xV / Main.game.getTime());
-		y += (yV / Main.game.getTime());
-		z += (zV / Main.game.getTime());
+		x += (xV / Main.getGame().getTime());
+		y += (yV / Main.getGame().getTime());
+		z += (zV / Main.getGame().getTime());
 		
 		
 		//x = x + xV;
