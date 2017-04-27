@@ -10,5 +10,6 @@ public class dont extends Entity{
 		try {
 			sprite = ImageIO.read(new File("res/kloud.png"));
 		} catch (IOException e) {}
+		sprite.setAccelerationPriority(1);
 	}
 }

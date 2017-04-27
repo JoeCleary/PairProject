@@ -56,17 +56,30 @@ public class Main {
 			public void paintComponent(Graphics g){
 				super.paintComponent(g);
 				
-				//get color
-				g.setColor(new Color(153,204,255));
-				g.fillRect(0, 0, 1600, 900);
 				
-				//make ground
-				g.setColor(Color.GREEN);
-				g.fillRect(0, 600, 1600, 900);
 				
 				//ground things
 				
-				Entity.updateAll(g);
+				VolatileImage img = panel.createVolatileImage(1600, 900);
+				
+				Graphics2D gg = (Graphics2D) img.getGraphics();
+				
+				//get color
+				gg.setColor(new Color(153,204,255));
+				gg.fillRect(0, 0, 1600, 900);
+				
+				//make ground
+				gg.setColor(Color.GREEN);
+				gg.fillRect(0, 600, 1600, 900);
+				
+				Entity.updateAll(gg);
+				
+				VolatileImage copyOfImage = panel.createVolatileImage(1600, 900);
+				
+						Graphics ggg = copyOfImage.createGraphics();
+						g.drawImage(originalImage, 0, 0, null);
+				
+				g.drawImage(img, 0, 0, null);
 				
 				//draw hud now? or maybe they should be entities but we will need to put in a special draw case for them
 			}
@@ -137,7 +150,7 @@ public class Main {
 		long no = System.nanoTime() - lastTime;
 		
 		if(no == 0L)
-			no = 1000000000L;
+			no = 1000L;
 		
 		return no;
 	}

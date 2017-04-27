@@ -17,6 +17,10 @@ public class PlayerTomcat extends Entity{
 		try {
 			sprite = ImageIO.read(new File("res/plane.png"));
 		} catch (IOException e) {}
+		
+		sprite.setAccelerationPriority(1);
+		System.out.println(sprite.getAccelerationPriority());
+		System.out.println(sprite.getCapabilities(null));
 	}
 	
 	public void update(){
@@ -27,14 +31,14 @@ public class PlayerTomcat extends Entity{
 		xV = 0;
 		
 		if(Main.getGame().getUp()) 
-			yV = -10;
+			yV = -1000;
 		else if(Main.getGame().getDown())
-			yV = 10;
+			yV = 1000;
 		
 		if(Main.getGame().getRight())
-			xV = 10;
+			xV = 1000;
 		else if(Main.getGame().getLeft())
-			xV = -00;
+			xV = -1000;
 		
 		if(Main.getGame().getShoot())
 			new Tracer(x, y, 99);

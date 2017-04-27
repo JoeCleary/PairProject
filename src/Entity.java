@@ -1,4 +1,5 @@
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.image.*;
 import java.io.File;
 import java.io.IOException;
@@ -43,12 +44,12 @@ public class Entity {
 			
 			//check for collision here?
 			
+			
+			
 			for(Entity e : Entity.getEntities()){
 				//System.out.println("(" + e.x + "," + e.y + "," + e.z + ")");
 				
 				g.drawImage(e.sprite, (int)e.x - ((int)e.z/2), (int)e.y - ((int)e.z/2), (int)e.z, (int)e.z, null);
-				
-				//g.drawImage(e.sprite, (int)e.x - ((int)e.z/2), (int)e.y - ((int)e.z/2), null);
 			}
 		}catch(ConcurrentModificationException cme){}
 	}
@@ -57,7 +58,6 @@ public class Entity {
 		x += (xV / Main.getGame().getTime());
 		y += (yV / Main.getGame().getTime());
 		z += (zV / Main.getGame().getTime());
-		
 		
 		//x = x + xV;
 		//y = y + yV;
