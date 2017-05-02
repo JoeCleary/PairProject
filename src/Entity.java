@@ -53,13 +53,13 @@ public class Entity {
 				//g.drawImage(e.sprite, (int)e.x - ((int)e.z/2), (int)e.y - ((int)e.z/2), (int)e.z, (int)e.z, null);
 				
 				if(e.x >= 800 && e.y >= 450)
-					g.drawImage(e.sprite, (int)e.x - ((int)e.z/2) + (int)e.z, (int)e.y - ((int)e.z/2) + (int)e.z, (int)e.z, (int)e.z, null);
+					g.drawImage(e.sprite, (int)e.x - ((int)e.z/2) + (int)e.z/10, (int)e.y - ((int)e.z/2) + (int)e.z/10, (int)e.z, (int)e.z, null);
 				else if(e.x > 800 && e.y < 450)
-					g.drawImage(e.sprite, (int)e.x - ((int)e.z/2) + (int)e.z, (int)e.y - ((int)e.z/2) - (int)e.z, (int)e.z, (int)e.z, null);
+					g.drawImage(e.sprite, (int)e.x - ((int)e.z/2) + (int)e.z/10, (int)e.y - ((int)e.z/2) - (int)e.z/10, (int)e.z, (int)e.z, null);
 				else if(e.x < 800 && e.y > 450)
-					g.drawImage(e.sprite, (int)e.x - ((int)e.z/2) - (int)e.z, (int)e.y - ((int)e.z/2) + (int)e.z, (int)e.z, (int)e.z, null);
+					g.drawImage(e.sprite, (int)e.x - ((int)e.z/2) - (int)e.z/10, (int)e.y - ((int)e.z/2) + (int)e.z/10, (int)e.z, (int)e.z, null);
 				else if(e.x < 800 && e.y < 450)
-					g.drawImage(e.sprite, (int)e.x - ((int)e.z/2) - (int)e.z, (int)e.y - ((int)e.z/2) - (int)e.z, (int)e.z, (int)e.z, null);
+					g.drawImage(e.sprite, (int)e.x - ((int)e.z/2) - (int)e.z/10, (int)e.y - ((int)e.z/2) - (int)e.z/10, (int)e.z, (int)e.z, null);
 			}
 		}catch(ConcurrentModificationException cme){}
 	}
