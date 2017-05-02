@@ -20,7 +20,6 @@ public class PlayerTomcat extends Entity{
 		
 		sprite.setAccelerationPriority(1);
 		System.out.println(sprite.getAccelerationPriority());
-		System.out.println(sprite.getCapabilities(null));
 	}
 	
 	public void update(){
@@ -30,15 +29,22 @@ public class PlayerTomcat extends Entity{
 		
 		xV = 0;
 		
-		if(Main.getGame().getUp()) 
+		if(Main.getGame().getUp()){
 			yV = -1000;
-		else if(Main.getGame().getDown())
+		}
+			
+		else if(Main.getGame().getDown()){
 			yV = 1000;
+		}
 		
-		if(Main.getGame().getRight())
+		if(Main.getGame().getRight()){
 			xV = 1000;
-		else if(Main.getGame().getLeft())
+		}
+		
+		else if(Main.getGame().getLeft()){
 			xV = -1000;
+		}
+		
 		
 		if(Main.getGame().getShoot())
 			new Tracer(x, y, 99);

@@ -43,6 +43,8 @@ public class Main {
 		
 		frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
 		
+		
+		
 		/*
 		BufferedImage cursorImg = new BufferedImage(1, 1, BufferedImage.TRANSLUCENT);
 
@@ -55,14 +57,12 @@ public class Main {
 		panel = new JPanel(){
 			public void paintComponent(Graphics g){
 				super.paintComponent(g);
-				
-				
-				
 				//ground things
 				
-				VolatileImage img = panel.createVolatileImage(1600, 900);
+				BufferedImage img = new BufferedImage(1600, 900, BufferedImage.SCALE_FAST);
+				img.setAccelerationPriority(1f);
 				
-				Graphics2D gg = (Graphics2D) img.getGraphics();
+				Graphics gg = img.getGraphics();
 				
 				//get color
 				gg.setColor(new Color(153,204,255));
@@ -74,17 +74,21 @@ public class Main {
 				
 				Entity.updateAll(gg);
 				
-				VolatileImage copyOfImage = panel.createVolatileImage(1600, 900);
 				
-						Graphics ggg = copyOfImage.createGraphics();
-						g.drawImage(originalImage, 0, 0, null);
+				ColorModel cm = img.getColorModel();
+				g.drawImage(new BufferedImage(cm, img.copyData(null), cm.isAlphaPremultiplied(), null), 0, 0, null);
 				
-				g.drawImage(img, 0, 0, null);
+				//copy = panel.createVolatileImage(1600, 900);
+				
+				//Graphics ggg = copy.createGraphics();
+				//ggg.drawImage(img, 0, 0, null);
+				
+				//g.drawImage(copy, 0, 0, null);
 				
 				//draw hud now? or maybe they should be entities but we will need to put in a special draw case for them
 			}
 		};
-
+		
 		frame.addKeyListener(new KeyListener(){
 			public void keyPressed(KeyEvent ke) {
 				if(ke.getKeyCode() == KeyEvent.VK_UP)
@@ -127,9 +131,6 @@ public class Main {
 		
 		new PlayerTomcat(800,450,100);
 		
-		
-		//new move((float) (Math.random() * 1600),(float) (Math.random() * 600),0);
-		//new move((float) (Math.random() * 1600),(float) (Math.random() * 600),0);
 		//new dont(300, 100, 150);
 		
 		//new dont(500, 100, 50);
@@ -138,7 +139,6 @@ public class Main {
 		//new Entity(500, 100, 150);
 		
 		while(gameOn){
-			
 			
 			lastTime = System.nanoTime();
 			
@@ -150,7 +150,7 @@ public class Main {
 		long no = System.nanoTime() - lastTime;
 		
 		if(no == 0L)
-			no = 1000L;
+			no = 1000;
 		
 		return no;
 	}
