@@ -27,6 +27,17 @@ public class Main {
 		game = new Main();
 		
 		game.startGame();
+		
+		javax.swing.SwingUtilities.invokeLater(new Runnable(){
+			public void run() {
+				runGUI();
+			}    
+		});
+	}
+	
+	public static void runGUI(){
+		while(true)
+			game.panel.repaint();
 	}
 	
 	@SuppressWarnings("serial")
@@ -52,31 +63,22 @@ public class Main {
 		
 		frame.setCursor(blankCursor);
 		 */
-		
-		
 		panel = new JPanel(){
 			public void paintComponent(Graphics g){
 				super.paintComponent(g);
+				
+				lastTime = System.nanoTime();
 				//ground things
 				
-				BufferedImage img = new BufferedImage(1600, 900, BufferedImage.SCALE_FAST);
-				img.setAccelerationPriority(1f);
-				
-				Graphics gg = img.getGraphics();
-				
 				//get color
-				gg.setColor(new Color(153,204,255));
-				gg.fillRect(0, 0, 1600, 900);
+				g.setColor(new Color(153,204,255));
+				g.fillRect(0, 0, 1600, 900);
 				
 				//make ground
-				gg.setColor(Color.GREEN);
-				gg.fillRect(0, 600, 1600, 900);
+				g.setColor(Color.GREEN);
+				g.fillRect(0, 600, 1600, 900);
 				
-				Entity.updateAll(gg);
-				
-				
-				ColorModel cm = img.getColorModel();
-				g.drawImage(new BufferedImage(cm, img.copyData(null), cm.isAlphaPremultiplied(), null), 0, 0, null);
+				Entity.updateAll(g);
 				
 				//copy = panel.createVolatileImage(1600, 900);
 				
@@ -137,13 +139,6 @@ public class Main {
 		//new Entity(100,100,50);
 		
 		//new Entity(500, 100, 150);
-		
-		while(gameOn){
-			
-			lastTime = System.nanoTime();
-			
-			panel.repaint();
-		}
 	}
 	
 	public long getTime(){
