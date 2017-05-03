@@ -12,6 +12,8 @@ public class Main {
 	private JFrame frame;
 	private JPanel panel;
 	
+	private Window window;
+	
 	private boolean up = false;
 	private boolean down = false;
 	private boolean left = false;
@@ -27,47 +29,23 @@ public class Main {
 		game = new Main();
 		
 		game.startGame();
-		
-		javax.swing.SwingUtilities.invokeLater(new Runnable(){
-			public void run() {
-				runGUI();
-			}    
-		});
-	}
-	
-	public static void runGUI(){
-		while(true)
-			game.panel.repaint();
 	}
 	
 	@SuppressWarnings("serial")
 	public void startGame(){
-		frame = new JFrame();
-		
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		
-		frame.setSize(1600, 900);
-		
-		frame.setVisible(true);
-		
-		frame.setResizable(false);
-		
-		frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
-		
-		
+		window = new Window();
 		
 		/*
 		BufferedImage cursorImg = new BufferedImage(1, 1, BufferedImage.TRANSLUCENT);
-
 		Cursor blankCursor = Toolkit.getDefaultToolkit().createCustomCursor(cursorImg, new Point(0, 0), "blank cursor");
 		
 		frame.setCursor(blankCursor);
 		 */
-		panel = new JPanel(){
+		
+		
+		panel = new JPanel()/*{z
 			public void paintComponent(Graphics g){
 				super.paintComponent(g);
-				
-				lastTime = System.nanoTime();
 				//ground things
 				
 				//get color
@@ -75,10 +53,14 @@ public class Main {
 				g.fillRect(0, 0, 1600, 900);
 				
 				//make ground
-				g.setColor(Color.GREEN);
+				g.setColor(new Color(12, 122, 14));
 				g.fillRect(0, 600, 1600, 900);
 				
 				Entity.updateAll(g);
+				
+				
+				//ColorModel cm = img.getColorModel();
+				//g.drawImage(new BufferedImage(cm, img.copyData(null), cm.isAlphaPremultiplied(), null), 0, 0, null);
 				
 				//copy = panel.createVolatileImage(1600, 900);
 				
@@ -89,7 +71,7 @@ public class Main {
 				
 				//draw hud now? or maybe they should be entities but we will need to put in a special draw case for them
 			}
-		};
+		}*/;
 		
 		frame.addKeyListener(new KeyListener(){
 			public void keyPressed(KeyEvent ke) {
@@ -133,19 +115,45 @@ public class Main {
 		
 		new PlayerTomcat(800,450,100);
 		
-		//new dont(300, 100, 150);
+		new move(300, 100, 50);
 		
-		//new dont(500, 100, 50);
+		new move(500, 100, 50);
 		//new Entity(100,100,50);
 		
 		//new Entity(500, 100, 150);
+		
+		while(gameOn){
+			lastTime = System.nanoTime();
+			
+			do{
+				do{
+					Graphics g = strategy.getDrawGraphics();
+					
+					g.setColor(new Color(153,204,255));
+					g.fillRect(0, 0, 1600, 900);
+					
+					//make ground
+					g.setColor(new Color(12, 122, 14));
+					g.fillRect(0, 600, 1600, 900);
+					
+					Entity.updateAll(g);
+					
+					g.dispose();
+					
+				}while(strategy.contentsRestored());
+				
+				strategy.show();
+			}while(strategy.contentsLost());
+			
+			panel.repaint();
+		}
 	}
 	
 	public long getTime(){
 		long no = System.nanoTime() - lastTime;
 		
 		if(no == 0L)
-			no = 1000;
+			no = 1000000L;
 		
 		return no;
 	}
@@ -175,5 +183,3 @@ public class Main {
 		return shoot;
 	}
 }
-
-

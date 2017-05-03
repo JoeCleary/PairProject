@@ -11,6 +11,10 @@ public class Tracer extends Entity{
 		
 		yV = -50;
 		
+		
+		w = 22;
+		h = 12;
+		
 		try {
 			sprite = ImageIO.read(new File("res/tracer.png"));
 		} catch (IOException e) {}

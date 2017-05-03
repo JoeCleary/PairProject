@@ -14,11 +14,14 @@ public class PlayerTomcat extends Entity{
 		yV = 0;
 		zV = 0;
 		
+		w = 498;
+		h = 144;
+		
 		try {
 			sprite = ImageIO.read(new File("res/plane.png"));
 		} catch (IOException e) {}
 		
-		sprite.setAccelerationPriority(1);
+		//sprite.setAccelerationPriority(1);
 		System.out.println(sprite.getAccelerationPriority());
 	}
 	

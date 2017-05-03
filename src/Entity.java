@@ -12,7 +12,8 @@ import javax.imageio.*;
 public class Entity {
 	protected float x, y, z;// make these vectors
 	protected float xV, yV, zV;
-	protected float w, h, d = 10f;
+	protected float w = 100, h = 100;
+	protected final float d = 10f;
 	protected BufferedImage sprite;
 	protected long timeCreated;
 	
@@ -44,22 +45,20 @@ public class Entity {
 			
 			//check for collision here?
 			
-			
-			boolean offX, offY;
-			
 			for(Entity e : Entity.getEntities()){
 				//System.out.println("(" + e.x + "," + e.y + "," + e.z + ")");
 				
-				//g.drawImage(e.sprite, (int)e.x - ((int)e.z/2), (int)e.y - ((int)e.z/2), (int)e.z, (int)e.z, null);
+				//g.drawImage(e.sprite, (int)e.x - ((int)e.z/2), (int)e.y - ((int)e.z/2), ((int)e.x *(int)e.w) /10, ((int)e.x *(int)e.h) / 10, null);
+				System.out.println(((int)e.z *(int)e.w) / 1000);
 				
 				if(e.x >= 800 && e.y >= 450)
-					g.drawImage(e.sprite, (int)e.x - ((int)e.z/2) + (int)e.z/10, (int)e.y - ((int)e.z/2) + (int)e.z/10, (int)e.z, (int)e.z, null);
+					g.drawImage(e.sprite, (int)e.x - ((int)e.z/2) + (int)e.z/10, (int)e.y - ((int)e.z/2) + (int)e.z, ((int)e.z *(int)e.w) / 100, ((int)e.z *(int)e.h) / 100, null);
 				else if(e.x > 800 && e.y < 450)
-					g.drawImage(e.sprite, (int)e.x - ((int)e.z/2) + (int)e.z/10, (int)e.y - ((int)e.z/2) - (int)e.z/10, (int)e.z, (int)e.z, null);
+					g.drawImage(e.sprite, (int)e.x - ((int)e.z/2) + (int)e.z/10, (int)e.y - ((int)e.z/2) - (int)e.z, ((int)e.z *(int)e.w) / 100, ((int)e.z *(int)e.h) / 100, null);
 				else if(e.x < 800 && e.y > 450)
-					g.drawImage(e.sprite, (int)e.x - ((int)e.z/2) - (int)e.z/10, (int)e.y - ((int)e.z/2) + (int)e.z/10, (int)e.z, (int)e.z, null);
+					g.drawImage(e.sprite, (int)e.x - ((int)e.z/2) - (int)e.z/10, (int)e.y - ((int)e.z/2) + (int)e.z, ((int)e.z *(int)e.w) / 100, ((int)e.z *(int)e.h) / 100, null);
 				else if(e.x < 800 && e.y < 450)
-					g.drawImage(e.sprite, (int)e.x - ((int)e.z/2) - (int)e.z/10, (int)e.y - ((int)e.z/2) - (int)e.z/10, (int)e.z, (int)e.z, null);
+					g.drawImage(e.sprite, (int)e.x - ((int)e.z/2) - (int)e.z/10, (int)e.y - ((int)e.z/2) - (int)e.z, ((int)e.z *(int)e.w) / 100, ((int)e.z *(int)e.h) / 100, null);
 			}
 		}catch(ConcurrentModificationException cme){}
 	}
