@@ -23,7 +23,7 @@ public class HeadUp extends Entity{
 		try {
 			sprite = ImageIO.read(new File("res/hud.png"));
 			missileMajor = ImageIO.read(new File("res/missilemajor.png"));
-			missileMajor = ImageIO.read(new File("res/missilemajor.png"));
+			missileMinor = ImageIO.read(new File("res/missileminor.png"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -42,13 +42,13 @@ public class HeadUp extends Entity{
 		int minorMissiles = missiles%10;
 		int outsideCounter = 0;
 		for(int counter = 0; counter < majorMissiles; counter++){
-			System.out.println("DEBUG: drawing a major missile at " + (1500+(counter*3)));
-			gui.drawImage(missileMajor, 1500+(counter*3), 650, null);
-			outsideCounter = counter*5;
+			System.out.println("DEBUG: drawing a major missile at " + (1400+(counter*3)));
+			gui.drawImage(missileMajor, 1000+(counter*40), 650, null);
+			outsideCounter = counter*40;
 		}
 		for(int counter = 0; counter < minorMissiles; counter++){
-			System.out.println("DEBUG: drawing a minor missile at " + (1500+(counter*1)));
-			gui.drawImage(missileMinor, 1500+(counter*1), 650, null);
+			System.out.println("DEBUG: drawing a minor missile at " + (1400+outsideCounter+(counter*1)));
+			gui.drawImage(missileMinor, (1000+outsideCounter+40+(counter*25)), 691, null);
 		}
 	}
 
