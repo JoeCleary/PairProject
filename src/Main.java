@@ -12,7 +12,9 @@ public class Main {
 	private JFrame frame;
 	private JPanel panel;
 	
-	private Window window;
+	private BufferStrategy strategy;
+	private Graphics gg;
+	private Windy window;
 	
 	private boolean up = false;
 	private boolean down = false;
@@ -33,7 +35,23 @@ public class Main {
 	
 	@SuppressWarnings("serial")
 	public void startGame(){
-		window = new Window();
+		//window = new Windy();
+		
+		frame = new JFrame();
+		
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		frame.setSize(1600, 900);
+		
+		frame.setVisible(true);
+		
+		frame.setResizable(false);
+		
+		frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
+		
+		frame.createBufferStrategy(3);
+		
+		strategy = frame.getBufferStrategy();
 		
 		/*
 		BufferedImage cursorImg = new BufferedImage(1, 1, BufferedImage.TRANSLUCENT);
@@ -43,7 +61,7 @@ public class Main {
 		 */
 		
 		
-		panel = new JPanel()/*{z
+		panel = new JPanel(){
 			public void paintComponent(Graphics g){
 				super.paintComponent(g);
 				//ground things
@@ -71,10 +89,12 @@ public class Main {
 				
 				//draw hud now? or maybe they should be entities but we will need to put in a special draw case for them
 			}
-		}*/;
+		};
 		
 		frame.addKeyListener(new KeyListener(){
 			public void keyPressed(KeyEvent ke) {
+				System.out.println("(hiiiiiiiiiiiiiiiiiiiiiiii )");
+				
 				if(ke.getKeyCode() == KeyEvent.VK_UP)
 					up = true;
 					
@@ -111,8 +131,6 @@ public class Main {
 			public void keyTyped(KeyEvent ke) {}
 		});	
 		
-		frame.setContentPane(panel);
-		
 		new PlayerTomcat(800,450,100);
 		
 		new move(300, 100, 50);
@@ -122,40 +140,43 @@ public class Main {
 		
 		//new Entity(500, 100, 150);
 		
-		while(gameOn){
-			lastTime = System.nanoTime();
-			
-			do{
-				do{
-					Graphics g = strategy.getDrawGraphics();
-					
-					g.setColor(new Color(153,204,255));
-					g.fillRect(0, 0, 1600, 900);
-					
-					//make ground
-					g.setColor(new Color(12, 122, 14));
-					g.fillRect(0, 600, 1600, 900);
-					
-					Entity.updateAll(g);
-					
-					g.dispose();
-					
-				}while(strategy.contentsRestored());
+		
+		
+		do {
+		    //try{
+		        Graphics gg = strategy.getDrawGraphics();
+		        
+		      //get color
+				gg.setColor(new Color(153,204,255));
+				gg.fillRect(0, 0, 1600, 900);
 				
-				strategy.show();
-			}while(strategy.contentsLost());
-			
-			panel.repaint();
-		}
+				//make ground
+				gg.setColor(new Color(12, 122, 14));
+				gg.fillRect(0, 600, 1600, 900);
+				
+				Entity.updateAll(gg);
+		        
+				
+		   // } finally {
+		   //       gg.dispose();
+		   // }
+				
+		    strategy.show();
+		} while (true);
+	 
 	}
 	
 	public long getTime(){
+		
+		return 1000L;
+		/*
 		long no = System.nanoTime() - lastTime;
 		
 		if(no == 0L)
 			no = 1000000L;
 		
 		return no;
+		*/
 	}
 	
 	public static Main getGame(){
