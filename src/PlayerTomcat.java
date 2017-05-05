@@ -17,8 +17,6 @@ public class PlayerTomcat extends Entity implements ActionListener{
 		
 		timer = new Timer(100, this);
 		
-		
-		
 		xV = 0;
 		yV = 0;
 		zV = 0;
@@ -41,14 +39,14 @@ public class PlayerTomcat extends Entity implements ActionListener{
 		xV = 0;
 		
 		if(Main.getGame().getUp())
-			yV = -1000f;
+			yV = -10000f;
 		else if(Main.getGame().getDown())
-			yV = 1000f;
+			yV = 10000f;
 		
 		if(Main.getGame().getRight())
-			xV = 1000f;
+			xV = 10000f;
 		else if(Main.getGame().getLeft())
-			xV = -1000f;
+			xV = -10000f;
 	}
 	
 	//add to score

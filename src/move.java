@@ -9,7 +9,7 @@ public class move extends Entity{
 	public move(float nX, float nY, float nZ) {
 		super(nX, nY, nZ);
 		
-		zV = 100f;
+		zV = 1000f;
 		
 		try {
 			sprite = ImageIO.read(new File("res/kloud.png"));

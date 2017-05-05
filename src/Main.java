@@ -16,6 +16,9 @@ public class Main {
 	private Graphics gg;
 	private Windy window;
 	
+	BufferedImage first;
+	BufferedImage second;
+	
 	private boolean up = false;
 	private boolean down = false;
 	private boolean left = false;
@@ -49,9 +52,9 @@ public class Main {
 		
 		frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
 		
-		frame.createBufferStrategy(3);
+		//frame.createBufferStrategy(3);
 		
-		strategy = frame.getBufferStrategy();
+		//strategy = frame.getBufferStrategy();
 		
 		/*
 		BufferedImage cursorImg = new BufferedImage(1, 1, BufferedImage.TRANSLUCENT);
@@ -66,6 +69,8 @@ public class Main {
 				super.paintComponent(g);
 				//ground things
 				
+				
+				
 				//get color
 				g.setColor(new Color(153,204,255));
 				g.fillRect(0, 0, 1600, 900);
@@ -75,6 +80,11 @@ public class Main {
 				g.fillRect(0, 600, 1600, 900);
 				
 				Entity.drawAll(g);
+				
+				
+				
+				//g = first.getGraphics();
+				
 				
 				
 				//ColorModel cm = img.getColorModel();
@@ -145,16 +155,13 @@ public class Main {
 		
 		//new Entity(500, 100, 150);
 		
-		int swetch = 0;
+		boolean swetch = true;
 		
-		
-		
-		
-		BufferedImage first = new BufferedImage(1600,900, BufferedImage.SCALE_FAST);
-		BufferedImage second = new BufferedImage(1600,900, BufferedImage.SCALE_FAST);
-		BufferedImage third = new BufferedImage(1600,900, BufferedImage.SCALE_FAST);
+		first = new BufferedImage(1600,900, BufferedImage.SCALE_FAST);
+		second = new BufferedImage(1600,900, BufferedImage.SCALE_FAST);
 		
 		Graphics g = first.getGraphics();
+		Graphics gg= second.getGraphics();
 				
 		while(true) {
 			lastTime = System.nanoTime();
@@ -162,18 +169,15 @@ public class Main {
 			Entity.updateAll();
 			
 			
-			if(swetch == 0)
+			if(swetch)
 				g = first.getGraphics();
-			else if(swetch == 1)
+			else
 				g = second.getGraphics();
-			else if(swetch == 1)
-				g = third.getGraphics();
+			//else if(swetch == 1)
+			//	g = third.getGraphics();
 			
 			
-			swetch++;
-					
-			if(swetch == 2)
-				swetch = 0;
+			
 			
 			g.setColor(new Color(153,204,255));
 			g.fillRect(0, 0, 1600, 900);
@@ -186,7 +190,7 @@ public class Main {
 			
 			panel.repaint();
 			
-			
+
 			/*
 		    //try{
 		        Graphics gg = strategy.getDrawGraphics();
