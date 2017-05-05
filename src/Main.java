@@ -74,7 +74,7 @@ public class Main {
 				g.setColor(new Color(12, 122, 14));
 				g.fillRect(0, 600, 1600, 900);
 				
-				Entity.updateAll(g);
+				Entity.drawAll(g);
 				
 				
 				//ColorModel cm = img.getColorModel();
@@ -93,7 +93,6 @@ public class Main {
 		
 		frame.addKeyListener(new KeyListener(){
 			public void keyPressed(KeyEvent ke) {
-				System.out.println("(hiiiiiiiiiiiiiiiiiiiiiiii )");
 				
 				if(ke.getKeyCode() == KeyEvent.VK_UP)
 					up = true;
@@ -131,7 +130,13 @@ public class Main {
 			public void keyTyped(KeyEvent ke) {}
 		});	
 		
+		frame.setContentPane(panel);
+		
 		new PlayerTomcat(800,450,100);
+		
+		new move(300, 100, 50);
+		
+		new move(500, 100, 50);
 		
 		new move(300, 100, 50);
 		
@@ -140,9 +145,49 @@ public class Main {
 		
 		//new Entity(500, 100, 150);
 		
+		int swetch = 0;
 		
 		
-		do {
+		
+		
+		BufferedImage first = new BufferedImage(1600,900, BufferedImage.SCALE_FAST);
+		BufferedImage second = new BufferedImage(1600,900, BufferedImage.SCALE_FAST);
+		BufferedImage third = new BufferedImage(1600,900, BufferedImage.SCALE_FAST);
+		
+		Graphics g = first.getGraphics();
+				
+		while(true) {
+			lastTime = System.nanoTime();
+			
+			Entity.updateAll();
+			
+			
+			if(swetch == 0)
+				g = first.getGraphics();
+			else if(swetch == 1)
+				g = second.getGraphics();
+			else if(swetch == 1)
+				g = third.getGraphics();
+			
+			
+			swetch++;
+					
+			if(swetch == 2)
+				swetch = 0;
+			
+			g.setColor(new Color(153,204,255));
+			g.fillRect(0, 0, 1600, 900);
+			
+			//make ground
+			g.setColor(new Color(12, 122, 14));
+			g.fillRect(0, 600, 1600, 900);
+			
+			Entity.drawAll(g);
+			
+			panel.repaint();
+			
+			
+			/*
 		    //try{
 		        Graphics gg = strategy.getDrawGraphics();
 		        
@@ -162,22 +207,21 @@ public class Main {
 		   // }
 				
 		    strategy.show();
-		} while (true);
+		    */
+		}
 	 
 	}
 	
 	public long getTime(){
 		
-		return 1000L;
-		/*
 		long no = System.nanoTime() - lastTime;
 		
 		if(no == 0L)
-			no = 1000000L;
+			no = 1000000000000000000L;
 		
 		return no;
-		*/
 	}
+	
 	
 	public static Main getGame(){
 		return game;

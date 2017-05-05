@@ -1,14 +1,23 @@
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
+import javax.swing.Timer;
 
-public class PlayerTomcat extends Entity{
+public class PlayerTomcat extends Entity implements ActionListener{
 	//z should almost always be 0 for the player
 	int score;
+	Timer timer;
+	long lastTime;
 	
 	public PlayerTomcat(float nX, float nY, float nZ) {
 		super(nX, nY, nZ);
+		
+		timer = new Timer(100, this);
+		
+		
 		
 		xV = 0;
 		yV = 0;
@@ -21,8 +30,7 @@ public class PlayerTomcat extends Entity{
 			sprite = ImageIO.read(new File("res/plane.png"));
 		} catch (IOException e) {}
 		
-		//sprite.setAccelerationPriority(1);
-		System.out.println(sprite.getAccelerationPriority());
+		sprite.setAccelerationPriority(1);
 	}
 	
 	public void update(){
@@ -32,25 +40,15 @@ public class PlayerTomcat extends Entity{
 		
 		xV = 0;
 		
-		if(Main.getGame().getUp()){
-			yV = -1000;
-		}
-			
-		else if(Main.getGame().getDown()){
-			yV = 1000;
-		}
+		if(Main.getGame().getUp())
+			yV = -1000f;
+		else if(Main.getGame().getDown())
+			yV = 1000f;
 		
-		if(Main.getGame().getRight()){
-			xV = 1000;
-		}
-		
-		else if(Main.getGame().getLeft()){
-			xV = -1000;
-		}
-		
-		
-		if(Main.getGame().getShoot())
-			new Tracer(x, y, 99);
+		if(Main.getGame().getRight())
+			xV = 1000f;
+		else if(Main.getGame().getLeft())
+			xV = -1000f;
 	}
 	
 	//add to score
@@ -60,5 +58,14 @@ public class PlayerTomcat extends Entity{
 	
 	public int getScore(){
 		return score;
+	}
+
+	public void actionPerformed(ActionEvent ae) {
+		if(ae.getSource() == timer)
+			if(Main.getGame().getShoot()){
+				System.out.println("hello");
+				new Tracer(x + 100, y + 100, 99);
+			}
+			
 	}
 }

@@ -7,9 +7,9 @@ public class Tracer extends Entity{
 	public Tracer(float nX, float nY, float nZ) {
 		super(nX, nY, nZ);
 		
-		zV = -500f;
+		zV = -50f;
 		
-		yV = -50;
+		yV = -5;
 		
 		
 		w = 22;
