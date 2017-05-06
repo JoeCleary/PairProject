@@ -38,15 +38,15 @@ public class PlayerTomcat extends Entity implements ActionListener{
 		
 		xV = 0;
 		
-		if(Main.getGame().getUp())
-			yV = -10000f;
-		else if(Main.getGame().getDown())
-			yV = 10000f;
+		if(Main.getGame().getUp() && y > 100)
+			yV = -100000f;
+		else if(Main.getGame().getDown() && y + h< 800)
+			yV = 100000f;
 		
-		if(Main.getGame().getRight())
-			xV = 10000f;
-		else if(Main.getGame().getLeft())
-			xV = -10000f;
+		if(Main.getGame().getRight() && x + w < 1500)
+			xV = 100000f;
+		else if(Main.getGame().getLeft() && x > 100)
+			xV = -100000f;
 	}
 	
 	//add to score

@@ -18,6 +18,7 @@ public class Main {
 	
 	BufferedImage first;
 	BufferedImage second;
+	BufferedImage off;
 	
 	private boolean up = false;
 	private boolean down = false;
@@ -64,42 +65,7 @@ public class Main {
 		 */
 		
 		
-		panel = new JPanel(){
-			public void paintComponent(Graphics g){
-				super.paintComponent(g);
-				//ground things
-				
-				
-				
-				//get color
-				g.setColor(new Color(153,204,255));
-				g.fillRect(0, 0, 1600, 900);
-				
-				//make ground
-				g.setColor(new Color(12, 122, 14));
-				g.fillRect(0, 600, 1600, 900);
-				
-				Entity.drawAll(g);
-				
-				
-				
-				//g = first.getGraphics();
-				
-				
-				
-				//ColorModel cm = img.getColorModel();
-				//g.drawImage(new BufferedImage(cm, img.copyData(null), cm.isAlphaPremultiplied(), null), 0, 0, null);
-				
-				//copy = panel.createVolatileImage(1600, 900);
-				
-				//Graphics ggg = copy.createGraphics();
-				//ggg.drawImage(img, 0, 0, null);
-				
-				//g.drawImage(copy, 0, 0, null);
-				
-				//draw hud now? or maybe they should be entities but we will need to put in a special draw case for them
-			}
-		};
+		panel = new JPanel();
 		
 		frame.addKeyListener(new KeyListener(){
 			public void keyPressed(KeyEvent ke) {
@@ -149,7 +115,26 @@ public class Main {
 		new move(500, 100, 50);
 		
 		new move(300, 100, 50);
+		new move(300, 100, 50);
 		
+		new move(500, 100, 50);
+		
+		new move(300, 100, 50);
+		
+		new move(500, 100, 50);
+		new move(500, 100, 50);
+		new move(300, 100, 50);
+		
+		new move(500, 100, 50);
+		
+		new move(300, 100, 50);
+		new move(300, 100, 50);
+		
+		new move(500, 100, 50);
+		
+		new move(300, 100, 50);
+		
+		new move(500, 100, 50);
 		new move(500, 100, 50);
 		//new Entity(100,100,50);
 		
@@ -161,7 +146,7 @@ public class Main {
 		second = new BufferedImage(1600,900, BufferedImage.SCALE_FAST);
 		
 		Graphics g = first.getGraphics();
-		Graphics gg= second.getGraphics();
+		//Graphics gg= second.getGraphics();
 				
 		while(true) {
 			lastTime = System.nanoTime();
@@ -176,9 +161,6 @@ public class Main {
 			//else if(swetch == 1)
 			//	g = third.getGraphics();
 			
-			
-			
-			
 			g.setColor(new Color(153,204,255));
 			g.fillRect(0, 0, 1600, 900);
 			
@@ -188,30 +170,12 @@ public class Main {
 			
 			Entity.drawAll(g);
 			
-			panel.repaint();
+			//draw hud here
 			
-
-			/*
-		    //try{
-		        Graphics gg = strategy.getDrawGraphics();
-		        
-		      //get color
-				gg.setColor(new Color(153,204,255));
-				gg.fillRect(0, 0, 1600, 900);
-				
-				//make ground
-				gg.setColor(new Color(12, 122, 14));
-				gg.fillRect(0, 600, 1600, 900);
-				
-				Entity.updateAll(gg);
-		        
-				
-		   // } finally {
-		   //       gg.dispose();
-		   // }
-				
-		    strategy.show();
-		    */
+			if(swetch)
+				panel.getGraphics().drawImage(first, 0, 0, null);
+			else
+				panel.getGraphics().drawImage(second, 0, 0, null);
 		}
 	 
 	}
@@ -221,7 +185,7 @@ public class Main {
 		long no = System.nanoTime() - lastTime;
 		
 		if(no == 0L)
-			no = 1000000000000000000L;
+			no = 1;
 		
 		return no;
 	}
