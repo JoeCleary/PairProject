@@ -14,7 +14,6 @@ public class Main {
 	
 	private BufferStrategy strategy;
 	private Graphics gg;
-	private Windy window;
 	
 	BufferedImage first;
 	BufferedImage second;

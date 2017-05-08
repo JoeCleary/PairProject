@@ -12,8 +12,9 @@ public class move extends Entity{
 		w = 267;
 		h = 83;
 		
+		
 		zV = 1000f;
-		yV = -1000f;
+		yV = -10f;
 		
 		try {
 			sprite = ImageIO.read(new File("res/fitterbehind.png"));
