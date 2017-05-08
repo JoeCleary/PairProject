@@ -9,10 +9,14 @@ public class move extends Entity{
 	public move(float nX, float nY, float nZ) {
 		super(nX, nY, nZ);
 		
-		zV = 1000f;
+		w = 267;
+		h = 83;
+		
+		zV = 10000f;
+		yV = -10000f;
 		
 		try {
-			sprite = ImageIO.read(new File("res/kloud.png"));
+			sprite = ImageIO.read(new File("res/fitterbehind.png"));
 		} catch (IOException e) {}
 		sprite.setAccelerationPriority(1);
 	}
