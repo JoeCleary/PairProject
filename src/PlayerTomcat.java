@@ -57,6 +57,16 @@ public class PlayerTomcat extends Entity implements ActionListener{
 	public int getScore(){
 		return score;
 	}
+	
+	public float getX(){
+		return x;
+	}
+	public float getY(){
+		return y;
+	}
+	public float getZ(){
+		return z;
+	}
 
 	public void actionPerformed(ActionEvent ae) {
 		if(ae.getSource() == timer)
