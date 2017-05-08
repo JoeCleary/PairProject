@@ -28,7 +28,12 @@ public class Main {
 	
 	private boolean gameOn = true;
 	
+	private boolean flop = true;
+	private int skip = 0;
+	
 	private long lastTime;
+	
+	public PlayerTomcat bigBoy;
 	
 	
 	public static void main(String args[]){
@@ -108,7 +113,7 @@ public class Main {
 		
 		frame.setContentPane(panel);
 		
-		new PlayerTomcat(800,450,100);
+		bigBoy = new PlayerTomcat(800,450,100);
 		
 		new move(300, 100, 50);
 		
@@ -165,9 +170,36 @@ public class Main {
 			g.fillRect(0, 0, 1600, 900);
 			
 			//make ground
-			g.setColor(new Color(12, 122, 14));
-			g.fillRect(0, 600, 1600, 900);
-			
+			if(skip == 0){
+				for(int counter = 700; counter <= 1000; counter += 50){
+					if(flop){
+						g.setColor(new Color(12, 122, 14));
+						flop = false;
+					}
+					else{
+						g.setColor(new Color(22,132,24));
+						flop = true;
+					}
+					g.fillRect(0, counter-((int)bigBoy.getY()/2), 1600, 900);
+				}
+			}
+			else{
+				for(int counter = 700; counter <= 1000; counter += 50){
+					if(flop){
+						g.setColor(new Color(12, 122, 14));
+						flop = false;
+					}
+					else{
+						g.setColor(new Color(22,132,24));
+						flop = true;
+					}
+					g.fillRect(0, counter-((int)bigBoy.getY()/2), 1600, 900);
+				}
+			}
+			skip ++;
+			if(skip > 50){
+				skip = 0;
+			}
 			Entity.drawAll(g);
 			
 			//draw hud here
