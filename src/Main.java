@@ -228,11 +228,13 @@ public class Main {
 		return no;
 	}
 	
-	
 	public static Main getGame(){
 		return game;
 	}
 	
+	public PlayerTomcat getPlayer(){
+		return bigBoy;
+	}
 	
 	public boolean getUp(){
 		return up;

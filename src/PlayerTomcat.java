@@ -26,6 +26,8 @@ public class PlayerTomcat extends Entity implements ActionListener{
 		w = 498;
 		h = 144;
 		
+		r = 205;
+		
 		try {
 			sprite = ImageIO.read(new File("res/plane.png"));
 		} catch (IOException e) {}
@@ -88,7 +90,9 @@ public class PlayerTomcat extends Entity implements ActionListener{
 	public float getZ(){
 		return z;
 	}
-
+	
+	
+	
 	public void actionPerformed(ActionEvent ae) {
 		if(ae.getSource() == timer)
 			if(Main.getGame().getShoot()){
