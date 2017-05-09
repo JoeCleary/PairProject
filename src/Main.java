@@ -8,7 +8,7 @@ import javax.imageio.ImageIO;
 import javax.swing.*;
 
 public class Main {
-	private static Main game;
+	public static Main game;
 	private JFrame frame;
 	private JPanel panel;
 	
@@ -115,7 +115,7 @@ public class Main {
 		
 		new move(300, 100, 50);
 		
-		new move(500, 100, 50);
+		/*new move(500, 100, 50);
 		
 		new move(300, 100, 50);
 		new move(300, 100, 50);
@@ -138,7 +138,7 @@ public class Main {
 		new move(300, 100, 50);
 		
 		new move(500, 100, 50);
-		new move(500, 100, 50);
+		new move(500, 100, 50);*/
 		//new Entity(100,100,50);
 		
 		//new Entity(500, 100, 150);
