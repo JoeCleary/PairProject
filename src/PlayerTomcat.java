@@ -11,6 +11,8 @@ public class PlayerTomcat extends Entity implements ActionListener{
 	int score;
 	Timer timer;
 	long lastTime;
+	boolean reset1 = false;
+	boolean reset2 = false;
 	
 	public PlayerTomcat(float nX, float nY, float nZ) {
 		super(nX, nY, nZ);
@@ -38,15 +40,34 @@ public class PlayerTomcat extends Entity implements ActionListener{
 		
 		xV = 0;
 		
-		if(Main.getGame().getUp() && y > 100)
-			yV = -100000f;
-		else if(Main.getGame().getDown() && y + h< 800)
+		reset1 = false;
+		if(Main.getGame().getUp() && y > 100){
+			try {
+				sprite = ImageIO.read(new File("res/planeup.png"));
+			} catch (IOException e) {}
+			yV = -1000f;
+			reset1 = true;
+		}
+		else if(Main.getGame().getDown() && y + h< 800){
 			yV = 100000f;
+			reset1 = true;
+		}
 		
-		if(Main.getGame().getRight() && x + w < 1500)
+		reset2 = false;
+		if(Main.getGame().getRight() && x + w < 1500){
 			xV = 100000f;
-		else if(Main.getGame().getLeft() && x > 100)
+			reset2 = true;
+		}
+		else if(Main.getGame().getLeft() && x > 100){
 			xV = -100000f;
+			reset2 = true;
+		}
+		
+		if(reset1 && reset2){
+			try {
+				sprite = ImageIO.read(new File("res/plane.png"));
+			} catch (IOException e) {}
+		}
 	}
 	
 	//add to score
