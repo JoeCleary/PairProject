@@ -41,7 +41,6 @@ public class Main {
 		game.startGame();
 	}
 	
-	@SuppressWarnings("serial")
 	public void startGame(){
 		//window = new Windy();
 		
@@ -149,9 +148,10 @@ public class Main {
 		first = new BufferedImage(1600,900, BufferedImage.SCALE_FAST);
 		second = new BufferedImage(1600,900, BufferedImage.SCALE_FAST);
 		
-		Graphics g = first.getGraphics();
-		//Graphics gg= second.getGraphics();
-				
+		Graphics2D g = (Graphics2D) first.getGraphics();
+		
+		GradientPaint horizon;
+		
 		while(true) {
 			lastTime = System.nanoTime();
 			
@@ -159,14 +159,18 @@ public class Main {
 			
 			
 			if(swetch)
-				g = first.getGraphics();
+				g = (Graphics2D) first.getGraphics();
 			else
-				g = second.getGraphics();
+				g = (Graphics2D) second.getGraphics();
 			//else if(swetch == 1)
 			//	g = third.getGraphics();
 			
 			g.setColor(new Color(153,204,255));
 			g.fillRect(0, 0, 1600, 900);
+			
+			horizon = new GradientPaint(0, 900 - ((int)bigBoy.getY()), Color.WHITE, 0, 100, new Color(153,204,255));
+			g.setPaint(horizon);
+			g.fillRect(0, 000, 1600, 900 -((int)bigBoy.getY()/2));
 			
 			//make ground
 			if(skip == 0){
@@ -199,6 +203,9 @@ public class Main {
 			if(skip > 50){
 				skip = 0;
 			}
+			
+			
+			
 			Entity.drawAll(g);
 			
 			//draw hud here
