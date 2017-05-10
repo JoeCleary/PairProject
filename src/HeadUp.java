@@ -9,15 +9,15 @@ import java.util.ConcurrentModificationException;
 import javax.imageio.ImageIO;
 
 
-public class HeadUp extends Entity{
-	
+public class HeadUp{
+	BufferedImage sprite;
 	BufferedImage missileMajor;
 	BufferedImage missileMinor;
 	Font hudText;
 	Graphics gui;
+	int score = 0;
 	//new HeadUp(600,500,1000);
-	public HeadUp(float nX, float nY, float nZ) {
-		super(nX, nY, nZ);
+	public HeadUp() {
 		hudText = new Font("Impact", Font.PLAIN, 44);
 		
 		try {
@@ -30,8 +30,12 @@ public class HeadUp extends Entity{
 	}
 	
 	public void update(){
+		BufferedImage imag = new BufferedImage(1600, 900, 0);
+		
 		Graphics gui = sprite.getGraphics();
-		int score = 421552;//test.getScore();
+		Graphics ggg = imag.getGraphics();//draw to a buffer maybe? 
+		
+		score++;//test.getScore();
 		int hits = 13;//test.getScore();
 		int missiles = 33;//test.getScore();
 		gui.setFont(hudText);
@@ -41,15 +45,21 @@ public class HeadUp extends Entity{
 		int majorMissiles = missiles/10;
 		int minorMissiles = missiles%10;
 		int outsideCounter = 0;
+	
 		for(int counter = 0; counter < majorMissiles; counter++){
 			System.out.println("DEBUG: drawing a major missile at " + (1400+(counter*3)));
 			gui.drawImage(missileMajor, 1000+(counter*40), 650, null);
 			outsideCounter = counter*40;
 		}
+		
 		for(int counter = 0; counter < minorMissiles; counter++){
 			System.out.println("DEBUG: drawing a minor missile at " + (1400+outsideCounter+(counter*1)));
 			gui.drawImage(missileMinor, (1000+outsideCounter+40+(counter*25)), 691, null);
 		}
+	}
+	
+	public void addToScore(int add){
+		score += add;
 	}
 
 }

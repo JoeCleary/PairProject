@@ -70,7 +70,6 @@ public class Entity {
 				//GraphicsConfiguration gc = g.getDefaultConfiguration();
 				BufferedImage rotated = new BufferedImage(neww, newh, BufferedImage.TRANSLUCENT);
 				
-				
 				if(e == Main.getGame().getPlayer()){
 					System.out.println("aaa");
 					Graphics2D gg = (Graphics2D) e.sprite.getGraphics();
@@ -102,6 +101,11 @@ public class Entity {
 				else if(e.x < 800 && e.y < 450)
 					g.drawImage(e.sprite, (int)e.x - ((int)e.z/2) - (int)e.z, (int)e.y - ((int)e.z/2) - (int)e.z, ((int)e.z *(int)e.w) / 100, ((int)e.z *(int)e.h) / 100, null);
 				*/
+				if(e.equals(Main.getGame().getHud())){
+					//System.out.println("hudi");
+					//g.drawImage(e.sprite, 0, 0, null);
+				}
+				else
 				if(e.z >= 0 && e.z < 150){//doesnt draw entity and deletes it if it gets to -1 or 150
 					g.drawImage(e.sprite, (int)e.x - ((int)e.z/2), (int)e.y - ((int)e.z/2), ((int)e.z *(int)e.w) / 100, ((int)e.z *(int)e.h) / 100, null);
 					/*
@@ -114,27 +118,13 @@ public class Entity {
 					else if(e.x < 800 && e.y < 450)
 						g.drawImage(e.sprite, (int)e.x - ((int)e.z/2), (int)e.y - ((int)e.z/2), ((int)e.z *(int)e.w) / 100, ((int)e.z *(int)e.h) / 100, null);
 					*/
-				}else
-					allEntities.remove(e);
+				}//else
+					//allEntities.remove(e);
 			}
 		}catch(ConcurrentModificationException cme){}
 		
 	}
-	/*
-	public static BufferedImage rotate(BufferedImage image, double angle) {
-	    double sin = Math.abs(Math.sin(angle)), cos = Math.abs(Math.cos(angle));
-	    int w = image.getWidth(), h = image.getHeight();
-	    int neww = (int)Math.floor(w*cos+h*sin), newh = (int) Math.floor(h * cos + w * sin);
-	    GraphicsConfiguration gc = g.getDefaultConfiguration();
-	    BufferedImage result = gc.createCompatibleImage(neww, newh, Transparency.TRANSLUCENT);
-	    Graphics2D g = result.createGraphics();
-	    g.translate((neww - w) / 2, (newh - h) / 2);
-	    g.rotate(angle, w / 2, h / 2);
-	    g.drawRenderedImage(image, null);
-	    g.dispose();
-	    return result;
-	}
-	*/
+	
 	public float getW(){
 		return w;
 	}

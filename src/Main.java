@@ -12,9 +12,6 @@ public class Main {
 	private JFrame frame;
 	private JPanel panel;
 	
-	private BufferStrategy strategy;
-	private Graphics gg;
-	
 	BufferedImage first;
 	BufferedImage second;
 	BufferedImage off;
@@ -25,15 +22,13 @@ public class Main {
 	private boolean right = false;
 	private boolean shoot = false;
 	
-	private boolean gameOn = true;
-	
 	private boolean flop = true;
 	private int skip = 0;
 	
 	private long lastTime;
 	
-	public PlayerTomcat bigBoy;
-	
+	private PlayerTomcat bigBoy;
+	private HeadUp hud;
 	
 	public static void main(String args[]){
 		game = new Main();
@@ -113,6 +108,8 @@ public class Main {
 		
 		bigBoy = new PlayerTomcat(800,450,100);
 		
+		hud = new HeadUp();
+		
 		new move(300, 100, 50);
 		
 		/*new move(500, 100, 50);
@@ -162,8 +159,6 @@ public class Main {
 				g = (Graphics2D) first.getGraphics();
 			else
 				g = (Graphics2D) second.getGraphics();
-			//else if(swetch == 1)
-			//	g = third.getGraphics();
 			
 			g.setColor(new Color(153,204,255));
 			g.fillRect(0, 0, 1600, 900);
@@ -208,7 +203,8 @@ public class Main {
 			
 			Entity.drawAll(g);
 			
-			//draw hud here
+			hud.update();
+			g.drawImage(hud.sprite, 0, 0, null);
 			
 			if(swetch)
 				panel.getGraphics().drawImage(first, 0, 0, null);
@@ -254,5 +250,9 @@ public class Main {
 	
 	public boolean getShoot(){
 		return shoot;
+	}
+
+	public HeadUp getHud() {
+		return null;
 	}
 }
