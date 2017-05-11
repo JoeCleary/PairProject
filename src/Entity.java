@@ -19,6 +19,8 @@ public class Entity {
 	protected BufferedImage sprite;
 	protected long timeCreated;
 	
+	public boolean marked = false;
+	
 	private static ArrayList<Entity> allEntities = new ArrayList<Entity>();
 	
 	public Entity(float nX, float nY, float nZ){
@@ -40,7 +42,7 @@ public class Entity {
 			for(Entity e : Entity.getEntities()){
 				e.update();
 				
-				//e.changeState();
+				
 			}
 			
 			sortEntities();
@@ -54,10 +56,6 @@ public class Entity {
 		try{
 			for(Entity e : Entity.getEntities()){
 				//System.out.println("(" + e.x + "," + e.y + "," + e.z + ")");
-				
-				//g.drawImage(e.sprite, (int)e.x - ((int)e.z/2), (int)e.y - ((int)e.z/2), ((int)e.x *(int)e.w) /10, ((int)e.x *(int)e.h) / 10, null);
-				//System.out.println(((int)e.z *(int)e.w) / 1000);
-				
 				
 				/* rotation shitty
 				
@@ -101,11 +99,7 @@ public class Entity {
 				else if(e.x < 800 && e.y < 450)
 					g.drawImage(e.sprite, (int)e.x - ((int)e.z/2) - (int)e.z, (int)e.y - ((int)e.z/2) - (int)e.z, ((int)e.z *(int)e.w) / 100, ((int)e.z *(int)e.h) / 100, null);
 				*/
-				if(e.equals(Main.getGame().getHud())){
-					//System.out.println("hudi");
-					//g.drawImage(e.sprite, 0, 0, null);
-				}
-				else
+				
 				if(e.z >= 0 && e.z < 150){//doesnt draw entity and deletes it if it gets to -1 or 150
 					g.drawImage(e.sprite, (int)e.x - ((int)e.z/2), (int)e.y - ((int)e.z/2), ((int)e.z *(int)e.w) / 100, ((int)e.z *(int)e.h) / 100, null);
 					/*
@@ -118,8 +112,14 @@ public class Entity {
 					else if(e.x < 800 && e.y < 450)
 						g.drawImage(e.sprite, (int)e.x - ((int)e.z/2), (int)e.y - ((int)e.z/2), ((int)e.z *(int)e.w) / 100, ((int)e.z *(int)e.h) / 100, null);
 					*/
-				}//else
+				}else{
+					if(e.getType() == 1)
+						Main.getGame().getPlayer().shotCount--;
+						
+					e.marked = true;
+					
 					//allEntities.remove(e);
+				}
 			}
 		}catch(ConcurrentModificationException cme){}
 		
@@ -133,6 +133,9 @@ public class Entity {
 	}
 	
 	protected void update(){
+		if(marked)
+			allEntities.remove(this);
+		
 		x += (xV / Main.getGame().getTime());
 		y += (yV / Main.getGame().getTime());
 		z += (zV / Main.getGame().getTime());
@@ -155,6 +158,10 @@ public class Entity {
 	
 	public static ArrayList<Entity> getEntities(){
 		return allEntities;
+	}
+	
+	public int getType(){
+		return 0;
 	}
 	
 	public void changeState(){}

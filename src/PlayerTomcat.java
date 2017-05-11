@@ -1,20 +1,21 @@
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
 import javax.swing.Timer;
 
-public class PlayerTomcat extends Entity implements ActionListener{
+public class PlayerTomcat extends Entity{
 	//z should almost always be 0 for the player
-	Timer timer;
 	long lastTime;
+	BufferedImage mid, up, down;
+	public int shotCount = 0;
+	Reticle target;
 	
 	public PlayerTomcat(float nX, float nY, float nZ) {
 		super(nX, nY, nZ);
-		
-		timer = new Timer(100, this);
 		
 		xV = 0;
 		yV = 0;
@@ -25,11 +26,15 @@ public class PlayerTomcat extends Entity implements ActionListener{
 		
 		r = 205;
 		
+		target = new Reticle(x, y + 50, z);
+		
 		try {
-			sprite = ImageIO.read(new File("res/plane.png"));
+			mid = ImageIO.read(new File("res/plane.png"));
+			up  = ImageIO.read(new File("res/planeup.png"));
+			down = ImageIO.read(new File("res/planedown.png"));
 		} catch (IOException e) {}
 		
-		sprite.setAccelerationPriority(1);
+		sprite = mid;
 	}
 	
 	public void update(){
@@ -40,25 +45,29 @@ public class PlayerTomcat extends Entity implements ActionListener{
 		xV = 0;
 		
 		if(Main.getGame().getUp() && y > 100){
-			try {
-				sprite = ImageIO.read(new File("res/planeup.png"));
-			} catch (IOException e) {}
-			yV = -100000f;
+			sprite = up;
+			yV = -50000f;
 		}
 		else if(Main.getGame().getDown() && y + h< 800){
-			yV = 100000f;
+			sprite = down;
+			yV = 50000f;
 		}
 		else{
-			try {
-				sprite = ImageIO.read(new File("res/plane.png"));
-			} catch (IOException e) {}
+			sprite = mid;
 		}
 		
 		if(Main.getGame().getRight() && x + w < 1500){
-			xV = 100000f;
+			xV = 50000f;
 		}
 		else if(Main.getGame().getLeft() && x > 100){
-			xV = -100000f;
+			xV = -50000f;
+		}
+		
+		if(Main.getGame().getShoot() && shotCount < 1){
+			System.out.println(shotCount);
+			shotCount++;
+			Tracer t = new Tracer(x + 244, y + 72, 95, 10, 10);//change z to go towards target
+			//t.update();
 		}
 	}
 	
@@ -71,14 +80,5 @@ public class PlayerTomcat extends Entity implements ActionListener{
 	}
 	public float getZ(){
 		return z;
-	}
-	
-	public void actionPerformed(ActionEvent ae) {
-		if(ae.getSource() == timer)
-			if(Main.getGame().getShoot()){
-				System.out.println("hello");
-				new Tracer(x + 100, y + 100, 99);
-			}
-			
 	}
 }

@@ -4,7 +4,6 @@ import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.util.ConcurrentModificationException;
 
 import javax.imageio.ImageIO;
 
@@ -13,6 +12,7 @@ public class HeadUp{
 	BufferedImage sprite;
 	BufferedImage missileMajor;
 	BufferedImage missileMinor;
+	BufferedImage hud;
 	Font hudText;
 	Graphics gui;
 	int score = 0;
@@ -21,19 +21,24 @@ public class HeadUp{
 		hudText = new Font("Impact", Font.PLAIN, 44);
 		
 		try {
-			sprite = ImageIO.read(new File("res/hud.png"));
+			hud = ImageIO.read(new File("res/hud.png"));
 			missileMajor = ImageIO.read(new File("res/missilemajor.png"));
 			missileMinor = ImageIO.read(new File("res/missileminor.png"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		
+		
 	}
 	
 	public void update(){
-		BufferedImage imag = new BufferedImage(1600, 900, 0);
+		//BufferedImage imag = new BufferedImage(1600, 900, 0);
+		sprite = new BufferedImage(1600, 900, BufferedImage.TRANSLUCENT);
 		
 		Graphics gui = sprite.getGraphics();
-		Graphics ggg = imag.getGraphics();//draw to a buffer maybe? 
+		//Graphics ggg = imag.getGraphics();//draw to a buffer maybe? 
+		
+		gui.drawImage(hud, 0, 0, null);
 		
 		score++;//test.getScore();
 		int hits = 13;//test.getScore();
@@ -45,7 +50,7 @@ public class HeadUp{
 		int majorMissiles = missiles/10;
 		int minorMissiles = missiles%10;
 		int outsideCounter = 0;
-	
+		/*
 		for(int counter = 0; counter < majorMissiles; counter++){
 			System.out.println("DEBUG: drawing a major missile at " + (1400+(counter*3)));
 			gui.drawImage(missileMajor, 1000+(counter*40), 650, null);
@@ -56,6 +61,7 @@ public class HeadUp{
 			System.out.println("DEBUG: drawing a minor missile at " + (1400+outsideCounter+(counter*1)));
 			gui.drawImage(missileMinor, (1000+outsideCounter+40+(counter*25)), 691, null);
 		}
+		*/
 	}
 	
 	public void addToScore(int add){

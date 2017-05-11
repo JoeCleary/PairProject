@@ -4,16 +4,19 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 
 public class Tracer extends Entity{
-	public Tracer(float nX, float nY, float nZ) {
+	
+	public Tracer(float nX, float nY, float nZ, float nXV, float nYV) {
 		super(nX, nY, nZ);
 		
-		zV = -50f;
+		zV = -50000;
 		
 		yV = -5;
 		
+		nXV = xV;
+		nYV = yV;
 		
-		w = 22;
-		h = 12;
+		w = 44;
+		h = 24;
 		
 		try {
 			sprite = ImageIO.read(new File("res/tracer.png"));
@@ -23,9 +26,9 @@ public class Tracer extends Entity{
 	
 	public void update(){
 		super.update();
-		
-		
-		if(z <= 0)
-			Entity.getEntities().remove(this);
+	}
+	
+	public int getType(){
+		return 1;
 	}
 }

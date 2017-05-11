@@ -21,6 +21,7 @@ public class Main {
 	private boolean left = false;
 	private boolean right = false;
 	private boolean shoot = false;
+	private boolean burn = false;
 	
 	private boolean flop = true;
 	private int skip = 0;
@@ -82,6 +83,9 @@ public class Main {
 				
 				if(ke.getKeyCode() == KeyEvent.VK_Z)
 					shoot = true;
+				
+				if(ke.getKeyCode() == KeyEvent.VK_SPACE)
+					burn = true;
 			}
 			
 			public void keyReleased(KeyEvent ke) {
@@ -99,6 +103,9 @@ public class Main {
 				
 				if(ke.getKeyCode() == KeyEvent.VK_Z)
 					shoot = false;
+				
+				if(ke.getKeyCode() == KeyEvent.VK_SPACE)
+					burn = true;
 			}
 			
 			public void keyTyped(KeyEvent ke) {}
@@ -219,7 +226,7 @@ public class Main {
 		long no = System.nanoTime() - lastTime;
 		
 		if(no == 0L)
-			no = 1;
+			no = Long.MIN_VALUE;
 		
 		return no;
 	}

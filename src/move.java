@@ -13,7 +13,7 @@ public class move extends Entity{
 		h = 83;
 		
 		
-		zV = 1000f;
+		zV = 10f;
 		xV = 10000f;
 		
 		try {
