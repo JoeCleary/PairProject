@@ -11,30 +11,19 @@ public class Reticle extends Entity{
 		
 		sprite = new BufferedImage(50, 50, BufferedImage.TRANSLUCENT);
 		
-		sprite.getGraphics().setColor(Color.DARK_GRAY);
-		sprite.getGraphics().drawRect((int)0, (int)0, (int)w, (int)h);
+		sprite.getGraphics().setColor(Color.BLACK);
+		sprite.getGraphics().draw3DRect((int)0, (int)0, (int)w, (int)h, false);
 	}
 	
 	public void update(){
 		super.update();
 		
-		yV = 0;
-		
-		xV = 0;
-		
-		if(Main.getGame().getUp() && y > 100){
-			yV = -50000f;
-		}
-		else if(Main.getGame().getDown() && y + h< 800){
-			yV = 50000f;
-		}
-		
-		if(Main.getGame().getRight() && x + w < 1500){
-			xV = 50000f;
-		}
-		else if(Main.getGame().getLeft() && x > 100){
-			xV = -50000f;
-		}
+		x = Main.getGame().getPlayer().x + 225;
+		y = Main.getGame().getPlayer().y + 25;
 	}
 
+	
+	public int getType(){
+		return 4;
+	}
 }

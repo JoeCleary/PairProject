@@ -15,7 +15,9 @@ public class HeadUp{
 	BufferedImage hud;
 	Font hudText;
 	Graphics gui;
-	int score = 0;
+	public int score = 0;
+	public int hits;
+	public int missiles;
 	//new HeadUp(600,500,1000);
 	public HeadUp() {
 		hudText = new Font("Impact", Font.PLAIN, 44);
@@ -25,7 +27,6 @@ public class HeadUp{
 			missileMajor = ImageIO.read(new File("res/missilemajor.png"));
 			missileMinor = ImageIO.read(new File("res/missileminor.png"));
 		} catch (IOException e) {
-			e.printStackTrace();
 		}
 		
 		
@@ -40,16 +41,16 @@ public class HeadUp{
 		
 		gui.drawImage(hud, 0, 0, null);
 		
-		score++;//test.getScore();
-		int hits = 13;//test.getScore();
-		int missiles = 33;//test.getScore();
+		//test.getScore();
+		//test.getScore();
+		//test.getScore();
 		gui.setFont(hudText);
 		gui.setColor(Color.YELLOW);
 		gui.drawString("score: " + score, 310, 67);
 		gui.drawString("hits: " + hits, 810, 67);
-		int majorMissiles = missiles/10;
-		int minorMissiles = missiles%10;
-		int outsideCounter = 0;
+		//int majorMissiles = missiles/10;
+		//int minorMissiles = missiles%10;
+		//int outsideCounter = 0;
 		/*
 		for(int counter = 0; counter < majorMissiles; counter++){
 			System.out.println("DEBUG: drawing a major missile at " + (1400+(counter*3)));

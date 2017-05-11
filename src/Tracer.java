@@ -5,15 +5,11 @@ import javax.imageio.ImageIO;
 
 public class Tracer extends Entity{
 	
-	public Tracer(float nX, float nY, float nZ, float nXV, float nYV) {
+	public Tracer(float nX, float nY, float nZ){
 		super(nX, nY, nZ);
 		
 		zV = -50000;
-		
-		yV = -5;
-		
-		nXV = xV;
-		nYV = yV;
+		xV = 0;
 		
 		w = 44;
 		h = 24;

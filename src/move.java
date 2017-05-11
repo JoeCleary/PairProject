@@ -9,15 +9,14 @@ public class move extends Entity{
 	public move(float nX, float nY, float nZ) {
 		super(nX, nY, nZ);
 		
-		w = 267;
-		h = 83;
+		w = 100;
+		h = 100;
 		
 		
-		zV = 10f;
-		xV = 10000f;
+		zV = (float) (Math.random() * 100000);
 		
 		try {
-			sprite = ImageIO.read(new File("res/fitterbehind.png"));
+			sprite = ImageIO.read(new File("res/kloud.png"));
 		} catch (IOException e) {}
 		sprite.setAccelerationPriority(1);
 	}
@@ -28,13 +27,16 @@ public class move extends Entity{
 		//if(z <= 1 || z >= 300)
 			//zV = - zV;
 		
-		if(z > 150){
-			Entity.getEntities().remove(this);
-			new move((float) (Math.random() * 1600),(float) (Math.random() * 600),0);
+		//if(z > 1){
+			//Entity.getEntities().remove(this);
+			//new move((float) (Math.random() * 1600),(float) (Math.random() * 600),0);
 			
 			//new move((float) (Math.random() * 1600),(float) (Math.random() * 900),0);
-
-		}
+			
+		
 	}
-
+	
+	public int getType(){
+		return 3;
+	}
 }

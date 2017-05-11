@@ -105,7 +105,7 @@ public class Main {
 					shoot = false;
 				
 				if(ke.getKeyCode() == KeyEvent.VK_SPACE)
-					burn = true;
+					burn = false;
 			}
 			
 			public void keyTyped(KeyEvent ke) {}
@@ -117,8 +117,14 @@ public class Main {
 		
 		hud = new HeadUp();
 		
-		new move(300, 100, 50);
+		new EnemyPlane((float) (Math.random() * 1600),(float) (Math.random() * 900),0);
+		new EnemyPlane((float) (Math.random() * 1600),(float) (Math.random() * 900),0);
+		new EnemyPlane((float) (Math.random() * 1600),(float) (Math.random() * 900),0);
+		new EnemyPlane((float) (Math.random() * 1600),(float) (Math.random() * 900),0);
 		
+		new move((float) (Math.random() * 1600),(float) (Math.random() * 600),0);
+		new move((float) (Math.random() * 1600),(float) (Math.random() * 600),0);
+		new move((float) (Math.random() * 1600),(float) (Math.random() * 300),0);
 		/*new move(500, 100, 50);
 		
 		new move(300, 100, 50);
@@ -155,6 +161,7 @@ public class Main {
 		Graphics2D g = (Graphics2D) first.getGraphics();
 		
 		GradientPaint horizon;
+		
 		
 		while(true) {
 			lastTime = System.nanoTime();
@@ -227,7 +234,7 @@ public class Main {
 		
 		if(no == 0L)
 			no = Long.MIN_VALUE;
-		
+			
 		return no;
 	}
 	
@@ -260,6 +267,10 @@ public class Main {
 	}
 
 	public HeadUp getHud() {
-		return null;
+		return hud;
+	}
+	
+	public boolean getBurn(){
+		return burn;
 	}
 }

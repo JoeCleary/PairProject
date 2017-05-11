@@ -26,12 +26,10 @@ public class PlayerTomcat extends Entity{
 		
 		r = 205;
 		
-		target = new Reticle(x, y + 50, z);
+		target = new Reticle(x, y + 25, z);
 		
 		try {
 			mid = ImageIO.read(new File("res/plane.png"));
-			up  = ImageIO.read(new File("res/planeup.png"));
-			down = ImageIO.read(new File("res/planedown.png"));
 		} catch (IOException e) {}
 		
 		sprite = mid;
@@ -44,29 +42,41 @@ public class PlayerTomcat extends Entity{
 		
 		xV = 0;
 		
-		if(Main.getGame().getUp() && y > 100){
+		if(Main.getGame().getUp() && y > 0){
 			sprite = up;
 			yV = -50000f;
 		}
-		else if(Main.getGame().getDown() && y + h< 800){
-			sprite = down;
+		else if(Main.getGame().getDown() && y + h< 900){
+			//sprite = down;
 			yV = 50000f;
 		}
 		else{
 			sprite = mid;
 		}
 		
-		if(Main.getGame().getRight() && x + w < 1500){
+		if(Main.getGame().getRight() && x + w < 1700){
 			xV = 50000f;
 		}
-		else if(Main.getGame().getLeft() && x > 100){
+		else if(Main.getGame().getLeft() && x > 0){
 			xV = -50000f;
 		}
 		
-		if(Main.getGame().getShoot() && shotCount < 1){
+		if(Main.getGame().getShoot() && !Main.getGame().getBurn() &&shotCount < 1){
 			System.out.println(shotCount);
 			shotCount++;
-			Tracer t = new Tracer(x + 244, y + 72, 95, 10, 10);//change z to go towards target
+			//Tracer t = new Tracer(x + 244, y + 72, 95, 10, 10);//change z to go towards target
+			new Tracer(target.x, target.y, 99);
+			
+			for(Entity e : Entity.getEntities()){
+				if(e.getType() == 2 && target.x < e.x + e.h && target.x > e.x && target.y < e.y + e.h && target.y > e.y && target.z > e.z){
+					e.marked = true;
+					Main.getGame().getHud().score += 100;
+					Main.getGame().getHud().hits += 1;
+					
+					new EnemyPlane((float) (Math.random() * 1600),(float) (Math.random() * 600),0);
+				}
+			}
+			
 			//t.update();
 		}
 	}
@@ -80,5 +90,9 @@ public class PlayerTomcat extends Entity{
 	}
 	public float getZ(){
 		return z;
+	}
+	
+	public int getType(){
+		return 4;
 	}
 }
