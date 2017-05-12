@@ -48,7 +48,6 @@ public class Entity {
 			
 			sortEntities();
 			
-			//check for collision here?
 			
 		}catch(ConcurrentModificationException cme){}
 	}
@@ -69,7 +68,6 @@ public class Entity {
 					
 					if(e.getType() == 2)
 						new EnemyPlane((float) (Math.random() * 1600),(float) (Math.random() * 600),0);
-					//allEntities.remove(e);
 					
 					if(e.getType() == 3)
 						new move((float) (Math.random() * 1600),(float) (Math.random() * 600),0);
@@ -93,9 +91,6 @@ public class Entity {
 		x += (xV / Main.getGame().getTime());
 		y += (yV / Main.getGame().getTime());
 		z += (zV / Main.getGame().getTime());
-		//x = x + xV;
-		//y = y + yV;
-		//z = z + zV;
 	}
 	
 	public BufferedImage getSprite(){

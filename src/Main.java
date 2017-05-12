@@ -49,21 +49,7 @@ public class Main {
 		frame.setVisible(true);
 		
 		frame.setResizable(false);
-		
-		frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
-		
-		//frame.createBufferStrategy(3);
-		
-		//strategy = frame.getBufferStrategy();
-		
-		/*
-		BufferedImage cursorImg = new BufferedImage(1, 1, BufferedImage.TRANSLUCENT);
-		Cursor blankCursor = Toolkit.getDefaultToolkit().createCustomCursor(cursorImg, new Point(0, 0), "blank cursor");
-		
-		frame.setCursor(blankCursor);
-		 */
-		
-		
+
 		panel = new JPanel();
 		
 		frame.addKeyListener(new KeyListener(){
@@ -120,39 +106,8 @@ public class Main {
 		new EnemyPlane((float) (Math.random() * 1600),(float) (Math.random() * 900),0);
 		new EnemyPlane((float) (Math.random() * 1600),(float) (Math.random() * 900),0);
 		new EnemyPlane((float) (Math.random() * 1600),(float) (Math.random() * 900),0);
-		new EnemyPlane((float) (Math.random() * 1600),(float) (Math.random() * 900),0);
-		
 		new move((float) (Math.random() * 1600),(float) (Math.random() * 600),0);
 		new move((float) (Math.random() * 1600),(float) (Math.random() * 600),0);
-		new move((float) (Math.random() * 1600),(float) (Math.random() * 300),0);
-		/*new move(500, 100, 50);
-		
-		new move(300, 100, 50);
-		new move(300, 100, 50);
-		
-		new move(500, 100, 50);
-		
-		new move(300, 100, 50);
-		
-		new move(500, 100, 50);
-		new move(500, 100, 50);
-		new move(300, 100, 50);
-		
-		new move(500, 100, 50);
-		
-		new move(300, 100, 50);
-		new move(300, 100, 50);
-		
-		new move(500, 100, 50);
-		
-		new move(300, 100, 50);
-		
-		new move(500, 100, 50);
-		new move(500, 100, 50);*/
-		//new Entity(100,100,50);
-		
-		//new Entity(500, 100, 150);
-		
 		boolean swetch = true;
 		
 		first = new BufferedImage(1600,900, BufferedImage.SCALE_FAST);
